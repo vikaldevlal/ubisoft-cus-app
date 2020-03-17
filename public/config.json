@@ -17,7 +17,8 @@
         "execute": {
            "inArguments":[
 				{
-                    "emailAddress": "{{Contact.Attribute.CustomActivity.EmailAddress}}"
+                    "emailAddress": "{{Contact.Attribute.CustomActivity.EmailAddress}}",
+			"JourneyId": "{{Context.DefinitionId}}" 			
                 }									
 			],
           "outArguments": [],
