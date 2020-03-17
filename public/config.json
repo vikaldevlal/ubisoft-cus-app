@@ -31,7 +31,7 @@
         }
     },
     "configurationArguments": {
-      "applicationExtensionKey": "__application_key_from_appcenter_here__",
+      "applicationExtensionKey": "39ade4f2-ebe9-4331-8b01-6fb86146c87d",
       "save": {
         "url": "https://latestwebhook.herokuapp.com/journeybuilder/save",
           "verb": "POST",
