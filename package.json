@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devsutd/journey-builder-activity-template.git"
+    "url": "git+https://github.com/vikaldevlal/latestwebhook.git"
   },
   "keywords": [
     "journey",
@@ -18,12 +18,12 @@
     "salesforce marketing cloud",
     "heroku"
   ],
-  "author": "Devs United",
-  "license": "ISC",
+  "author": "Dev",
+  "license": "",
   "bugs": {
-    "url": "https://github.com/devsutd/journey-builder-activity-template/issues"
+    "url": "https://github.com/vikaldevlal/latestwebhook/issues"
   },
-  "homepage": "https://github.com/devsutd/journey-builder-activity-template#readme",
+  "homepage": "https://github.com/vikaldevlal/latestwebhook#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
     "bower": "^1.8.0",
