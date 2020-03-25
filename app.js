@@ -86,7 +86,7 @@ app.get('/connecttoMCData', function(request, responsefromWeb) {
 	
 	axios({
 	    method: 'post',
-	    url: 'https://mc7gdqrf6hn02-0-h9j22dns1twq.rest.marketingcloudapis.com/hub/v1/dataevents/key:testdataextension/rowset',
+	    url: 'https://mc7gdqrf6hn02-0-h9j22dns1twq.rest.marketingcloudapis.com/hub/v1/dataevents/key:testdataextension1/rowset',
 	    data: weatherData,
 	    headers:{
 	       'Authorization': 'Bearer ' + token,
