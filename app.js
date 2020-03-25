@@ -9,6 +9,10 @@ var path        = require('path');
 var request     = require('request');
 var routes      = require('./routes');
 var activity    = require('./routes/activity');
+const axios = require('axios');
+const CircularJSON = require('circular-json');
+var token='';
+var weatherData = [];
 
 var app = express();
 
@@ -27,17 +31,79 @@ if ('development' == app.get('env')) {
   app.use(errorhandler());
 }
 
-// HubExchange Routes
-app.get('/', routes.index );
-app.post('/login', routes.login );
-app.post('/logout', routes.logout );
+app.get('/', function(request, response) {
+  response.send('Hello World!')
+})
+app.get('/getweather', function(request, responsefromWeb) {
+  axios.get('https://api.weather.gov/alerts/active/area/MN')
+  .then(function (response) {
+  	var datafromCall = response.data.features;
+  	for(var x=0;x<datafromCall.length;x++){
+  		var weatherItem = {
+  			"keys":{
+  				"theid" : datafromCall[x].properties.id
+  			},
+  			"values":{
+					"field1": datafromCall[x].type,
+					"field2": datafromCall[x].properties.sender
+  			}
+  		}
+  		weatherData.push(weatherItem);
+  	}
+    responsefromWeb.send(response.data.features);
+  })
+  .catch(function (error) {
+    console.log(error);
+    responsefromWeb.send(error);
+  });
+})
 
-// Custom Hello World Activity Routes
-app.post('/journeybuilder/save/', activity.save );
-app.post('/journeybuilder/validate/', activity.validate );
-app.post('/journeybuilder/publish/', activity.publish );
-app.post('/journeybuilder/execute/', activity.execute );
+app.get('/connecttoMC', function(request, responsefromWeb) {
+	console.log('Client ID : '+process.env.CLIENT_ID);
+	var conData = {
+    'clientId': '6c904kcbpl8plxcyb671eu2a',
+    'clientSecret': '75ZDElqnzzg2AglCNaU5D7Ih'  
+  	}
+	axios({
+	  method:'post',
+	  url:'https://mc7gdqrf6hn02-0-h9j22dns1twq.auth.marketingcloudapis.com/v1/requestToken',
+	  data: conData,
+	  headers:{
+       'Content-Type': 'application/json',
+	  }
+	})
+	  .then(function(response) {
+	  		responsefromWeb.send('Authorization Sent');
+	  		token = response.data.accessToken;
+	  	
+	}).catch(function (error) {
+	    console.log(error);
+	    responsefromWeb.send(error);
+	  });
+})
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
+app.get('/connecttoMCData', function(request, responsefromWeb) {
+	
+	axios({
+	    method: 'post',
+	    url: 'https://mc7gdqrf6hn02-0-h9j22dns1twq.rest.marketingcloudapis.com/hub/v1/dataevents/key:testdataextension/rowset',
+	    data: weatherData,
+	    headers:{
+	       'Authorization': 'Bearer ' + token,
+	       'Content-Type': 'application/json',
+	    }
+	  })
+	    .then(function(response) {
+				var json = CircularJSON.stringify(response);
+	      console.log(json);
+	      responsefromWeb.send(json);
+		}) 
+		 .catch(function (error) {
+			console.log(error);
+		});
+})
+ 
+
+app.listen(app.get('port'), function() {
+  console.log("Node app is running at localhost:" + app.get('port'))
+})
