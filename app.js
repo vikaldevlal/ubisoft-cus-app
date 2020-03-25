@@ -41,11 +41,15 @@ app.get('/getweather', function(request, responsefromWeb) {
   	for(var x=0;x<datafromCall.length;x++){
   		var weatherItem = {
   			"keys":{
-  				"theid" : datafromCall[x].properties.id
+  				"id" : datafromCall[x].properties.id
   			},
   			"values":{
-					"field1": datafromCall[x].type,
-					"field2": datafromCall[x].properties.sender
+					"type": datafromCall[x].properties.type,
+					"effective": datafromCall[x].properties.effective,
+				        "expires": datafromCall[x].properties.expires,
+					"certainty": datafromCall[x].properties.certainty,
+				         "event": datafromCall[x].properties.event,
+					"response": datafromCall[x].properties.response
   			}
   		}
   		weatherData.push(weatherItem);
