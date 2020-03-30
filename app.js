@@ -47,6 +47,9 @@ app.get('/getCouponCode', function(request, responsefromWeb) {
 	  })
   .then(function (response) { 
 	var json = CircularJSON.stringify(response);
+	  console.log('****Start of JSON*****');
+	  console.log(json);
+	  console.log('****End of JSON*****');
   	datafromCall = json.data.items;
  
   	for(var x=0;x<datafromCall.length;x++){
