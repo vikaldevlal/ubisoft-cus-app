@@ -36,8 +36,8 @@ app.get('/', function(request, response) {
 })
 app.get('/getCouponCode', function(request, responsefromWeb) {
   axios({
-	    method: 'post',
-	    url: process.env.RESTENDPOINT+'/hub/v1/dataevents/key:getcouponcode/rowset',
+	    method: 'get',
+	    url: process.env.RESTENDPOINT+'/data/v1/customobjectdata/key/getcouponcode/rowset',
 	    data: couponData,
 	    headers:{
 	       'Authorization': 'Bearer ' + token,
