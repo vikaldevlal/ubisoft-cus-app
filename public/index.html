@@ -32,7 +32,7 @@
         })();
     </script>
     <script type="text/javascript">
- 	$.get( "/getweather", function( data ) {
+ 	$.get( "/connecttoMC", function( data ) {
 	 	console.log(data);
 	 	$(function () {
 		    $('#table').bootstrapTable({
@@ -42,9 +42,14 @@
 
 	});
 
- 	function connecttoMC(){
+ 	function getCoupon(){
  		$.get( "/connecttoMC", function( data ) {
 	 	console.log(data);
+		$(function () {
+		    $('#table').bootstrapTable({
+		        data: data
+		    });
+		});	
 	 	
 
 	});
@@ -67,11 +72,7 @@
          <table id="table">
         <thead>
             <tr>
-		<th data-field="properties.id">ID</th>
-                <th data-field="properties.effective">Effective</th>
-                <th data-field="properties.expires">expires</th>
-                <th data-field="properties.certainty">Certainty</th>
-                <th data-field="properties.event">Event</th>
+		<th data-field="properties.CouponCode">CouponCode</th>
             </tr>
         </thead>
     </table>
@@ -79,10 +80,10 @@
     </div>
     <div class="row justify-content-start">
       <div class="col-4">
-        <button class="btn-success" onclick="connecttoMC();">Connecto to MC</button>
+        <button class="btn-success" onclick="getCoupon();">Get Coupon</button>
       </div>
       <div class="col-4">
-       <button class="btn-primary " onclick="connecttoMCData();">Send data to MC</button>
+       <button class="btn-primary " onclick="connecttoMCData();">Save Coupon User</button>
       </div>
     </div>
     </div>
