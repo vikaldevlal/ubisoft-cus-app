@@ -35,7 +35,7 @@ app.get('/', function(request, response) {
   response.send('Hello World!')
 })
 app.get('/getweather', function(request, responsefromWeb) {
-  axios.get('https://api.weather.gov/alerts/active/area/MN')
+  axios.get(process.env.WeatherEndPoint)
   .then(function (response) {
   	var datafromCall = response.data.features;
   	for(var x=0;x<datafromCall.length;x++){
