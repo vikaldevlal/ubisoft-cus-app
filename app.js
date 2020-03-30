@@ -46,7 +46,10 @@ app.get('/getCouponCode', function(request, responsefromWeb) {
 	    }
 	  })
   .then(function (response) {
+	   console.log(CircularJSON.stringify(response)); 
   	datafromCall = CircularJSON.stringify(response).items;
+
+	  console.log(datafromCall); 
   	for(var x=0;x<datafromCall.length;x++){
   		var couponItem = {
   			"keys":{
