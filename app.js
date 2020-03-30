@@ -44,12 +44,11 @@ app.get('/getweather', function(request, responsefromWeb) {
   				"id" : datafromCall[x].properties.id
   			},
   			"values":{
-					"type": datafromCall[x].properties.type,
+					
 					"effective": datafromCall[x].properties.effective,
 				        "expires": datafromCall[x].properties.expires,
 					"certainty": datafromCall[x].properties.certainty,
-				         "event": datafromCall[x].properties.event,
-					"response": datafromCall[x].properties.response
+				         "event": datafromCall[x].properties.event
   			}
   		}
   		weatherData.push(weatherItem);
