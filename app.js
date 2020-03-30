@@ -12,7 +12,7 @@ var activity    = require('./routes/activity');
 const axios = require('axios');
 const CircularJSON = require('circular-json');
 var token='';
-var weatherData = [];
+var couponData = [];
 
 var app = express();
 
@@ -34,24 +34,29 @@ if ('development' == app.get('env')) {
 app.get('/', function(request, response) {
   response.send('Hello World!')
 })
-app.get('/getweather', function(request, responsefromWeb) {
-  axios.get(process.env.WeatherEndPoint)
+app.get('/getCouponCode', function(request, responsefromWeb) {
+  axios({
+	    method: 'post',
+	    url: process.env.RESTENDPOINT+'/hub/v1/dataevents/key:getcouponcode/rowset',
+	    data: couponData,
+	    headers:{
+	       'Authorization': 'Bearer ' + token,
+	       'Content-Type': 'application/json',
+	    }
+	  })
   .then(function (response) {
-  	var datafromCall = response.data.features;
+  	var datafromCall = CircularJSON.stringify(response).items;
   	for(var x=0;x<datafromCall.length;x++){
-  		var weatherItem = {
+  		var couponItem = {
   			"keys":{
-  				"id" : datafromCall[x].properties.id
+  				"CouponCode" : datafromCall[x].keys.couponcode
   			},
   			"values":{
 					
-					"effective": datafromCall[x].properties.effective,
-				        "expires": datafromCall[x].properties.expires,
-					"certainty": datafromCall[x].properties.certainty,
-				         "event": datafromCall[x].properties.event
+					"FirstName": 'John'+x
   			}
   		}
-  		weatherData.push(weatherItem);
+  		couponData.push(couponItem);
   	}
     responsefromWeb.send(response.data.features);
   })
@@ -62,7 +67,6 @@ app.get('/getweather', function(request, responsefromWeb) {
 })
 
 app.get('/connecttoMC', function(request, responsefromWeb) {
-	console.log('Client ID : '+process.env.CLIENT_ID);
 	var conData = {
     'clientId': process.env.CLIENT_ID,
     'clientSecret': process.env.CLIENT_SECRET  
@@ -89,8 +93,8 @@ app.get('/connecttoMCData', function(request, responsefromWeb) {
 	
 	axios({
 	    method: 'post',
-	    url: process.env.RESTENDPOINT+'/hub/v1/dataevents/key:testdataextension1/rowset',
-	    data: weatherData,
+	    url: process.env.RESTENDPOINT+'/hub/v1/dataevents/key:cjacouponpost/rowset',
+	    data: couponData,
 	    headers:{
 	       'Authorization': 'Bearer ' + token,
 	       'Content-Type': 'application/json',
