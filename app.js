@@ -50,7 +50,7 @@ app.get('/getCouponCode', function(request, responsefromWeb) {
 	  console.log('****Start of JSON*****');
 	  console.log(json);
 	  console.log('****End of JSON*****');
-  	datafromCall = json.data.items;
+  	datafromCall = json.config.data.items;
  
   	for(var x=0;x<datafromCall.length;x++){
   		var couponItem = {
