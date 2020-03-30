@@ -45,11 +45,10 @@ app.get('/getCouponCode', function(request, responsefromWeb) {
 	       'Content-Type': 'application/json',
 	    }
 	  })
-  .then(function (response) {
-	   console.log("Total Response : "+CircularJSON.stringify(response)); 
-  	datafromCall = CircularJSON.stringify(response).data.items;
-
-	  console.log("Coupons Details : "+datafromCall); 
+  .then(function (response) { 
+	responsefromWeb.send(response);
+  	datafromCall = response.data.items;
+ 
   	for(var x=0;x<datafromCall.length;x++){
   		var couponItem = {
   			"keys":{
