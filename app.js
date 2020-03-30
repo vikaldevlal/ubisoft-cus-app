@@ -13,6 +13,7 @@ const axios = require('axios');
 const CircularJSON = require('circular-json');
 var token='';
 var couponData = [];
+var datafromCall =[];
 
 var app = express();
 
@@ -45,7 +46,7 @@ app.get('/getCouponCode', function(request, responsefromWeb) {
 	    }
 	  })
   .then(function (response) {
-  	var datafromCall = CircularJSON.stringify(response).items;
+  	datafromCall = CircularJSON.stringify(response).items;
   	for(var x=0;x<datafromCall.length;x++){
   		var couponItem = {
   			"keys":{
