@@ -47,7 +47,8 @@ app.get('/getCouponCode', function(request, responsefromWeb) {
 	  
   	datafromCall = response.data.items;
  console.log('****Start of datafromCall*****');
-	 console.log(datafromCall);  
+	 console.log(datafromCall);
+	  console.log("Array Length : "+datafromCall.length);
 	  console.log('****End of datafromCall*****');
 	  
   	for(var x=0;x<datafromCall.length;x++){
