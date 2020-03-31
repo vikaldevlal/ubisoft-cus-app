@@ -44,9 +44,8 @@ app.get('/getCouponCode', function(request, responsefromWeb) {
 	    }
 	  })
   .then(function (response) { 
-	var json = JSON.parse(response);
 	  
-  	datafromCall = json.data;
+  	datafromCall = response.data.items;
  console.log('****Start of datafromCall*****');
 	 console.log(datafromCall);  
 	  console.log('****End of datafromCall*****');
