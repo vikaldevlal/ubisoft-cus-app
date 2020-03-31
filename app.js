@@ -34,6 +34,7 @@ if ('development' == app.get('env')) {
 
 
 app.get('/getCouponCode', function(request, responsefromWeb) {
+	couponData=[];
   axios({
 	    method: 'get',
 	    url: process.env.RESTENDPOINT+'/data/v1/customobjectdata/key/getcouponcode/rowset',
@@ -46,10 +47,6 @@ app.get('/getCouponCode', function(request, responsefromWeb) {
   .then(function (response) { 
 	  
   	datafromCall = response.data.items;
- console.log('****Start of datafromCall*****');
-	 console.log(datafromCall);
-	  console.log("Array Length : "+datafromCall.length);
-	  console.log('****End of datafromCall*****');
 	  
   	for(var x=0;x<datafromCall.length;x++){
   		var couponItem = {
@@ -63,7 +60,7 @@ app.get('/getCouponCode', function(request, responsefromWeb) {
   		}
   		couponData.push(couponItem);
   	}
-	  console.log('Coupon Data : '+couponData);
+
     responsefromWeb.send(couponData);
   })
   .catch(function (error) {
