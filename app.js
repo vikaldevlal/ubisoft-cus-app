@@ -63,7 +63,8 @@ app.get('/getCouponCode', function(request, responsefromWeb) {
   		}
   		couponData.push(couponItem);
   	}
-    responsefromWeb.send(CircularJSON.stringify(response));
+	  console.log('Coupon Data : '+couponData);
+    responsefromWeb.send(couponData);
   })
   .catch(function (error) {
     console.log(error);
