@@ -32,9 +32,7 @@ if ('development' == app.get('env')) {
   app.use(errorhandler());
 }
 
-app.get('/', function(request, response) {
-  response.send('Hello World!')
-})
+
 app.get('/getCouponCode', function(request, responsefromWeb) {
   axios({
 	    method: 'get',
