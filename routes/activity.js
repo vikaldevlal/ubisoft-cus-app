@@ -6,6 +6,11 @@ const Path = require('path');
 const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
 var util = require('util');
 var http = require('https');
+const axios = require('axios');
+const CircularJSON = require('circular-json');
+var token='';
+var couponData = [];
+var datafromCall =[];
 
 exports.logExecuteData = [];
 
@@ -137,28 +142,89 @@ exports.connecttoMC = function (req, res) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
     logData(req);
-    //res.send(200, 'Validate');;-express deprecated res.send(status, body)
-     res.status(200).send('Validate');
+    
+    var conData = {
+    'clientId': process.env.CLIENT_ID,
+    'clientSecret': process.env.CLIENT_SECRET  
+  	}
+	axios({
+	  method:'post',
+	  url:process.env.AUTHENDPOINT,
+	  data: conData,
+	  headers:{
+       'Content-Type': 'application/json',
+	  }
+	})
+	  .then(function(response) {
+	  		res.send('Authorization Sent');
+	  		token = response.data.accessToken;
+	  	
+	}).catch(function (error) {
+	    console.log(error);
+	    res.send(error);
+	  });
+     res.status(200).send('connecttoMC');
 };
 
 /*
  * POST Handler for /getCouponCode/ route of Activity.
  */
 exports.getCouponCode = function (req, res) {
-    // Data from the req and put it in an array accessible to the main app.
-    //console.log( req.body );
-    logData(req);
-    //res.send(200, 'Validate');;-express deprecated res.send(status, body)
-     res.status(200).send('Validate');
+  couponData=[];
+  axios({
+	    method: 'get',
+	    url: process.env.RESTENDPOINT+'/data/v1/customobjectdata/key/getcouponcode/rowset',
+	    data: couponData,
+	    headers:{
+	       'Authorization': 'Bearer ' + token,
+	       'Content-Type': 'application/json',
+	    }
+	  })
+  .then(function (response) { 
+	  
+  	datafromCall = response.data.items;
+	  
+  	for(var x=0;x<datafromCall.length;x++){
+  		var couponItem = {
+  			"keys":{
+  				"CouponCode" : datafromCall[x].keys.couponcode
+  			},
+  			"values":{
+					
+					"FirstName": 'John'+x
+  			}
+  		}
+  		couponData.push(couponItem);
+  	}
+
+    res.send(couponData);
+  })
+  .catch(function (error) {
+    console.log(error);
+    res.send(error);
+  });
 };
 
 /*
  * POST Handler for /postCouponData/ route of Activity.
  */
 exports.postCouponData = function (req, res) {
-    // Data from the req and put it in an array accessible to the main app.
-    //console.log( req.body );
-    logData(req);
-    //res.send(200, 'Validate');;-express deprecated res.send(status, body)
-     res.status(200).send('Validate');
+    axios({
+	    method: 'post',
+	    url: process.env.RESTENDPOINT+'/hub/v1/dataevents/key:cjacouponpost/rowset',
+	    data: couponData,
+	    headers:{
+	       'Authorization': 'Bearer ' + token,
+	       'Content-Type': 'application/json',
+	    }
+	  })
+	    .then(function(response) {
+				var json = CircularJSON.stringify(response);
+	      console.log(json);
+	      responsefromWeb.send(json);
+		}) 
+		 .catch(function (error) {
+			console.log(error);
+		});
+})
 };
