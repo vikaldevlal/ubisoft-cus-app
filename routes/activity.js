@@ -166,7 +166,7 @@ exports.connecttoMC = function (req, responsefromWeb) {
 	  }
 	})
 	  .then(function(response) {
-	  		//responsefromWeb.send('Authorization Sent');
+	  		responsefromWeb.status(200).send('connecttoMC');
 	  		token = response.data.accessToken;
 		console.log('token : '+token);
 	  	
@@ -174,7 +174,7 @@ exports.connecttoMC = function (req, responsefromWeb) {
 	    console.log(error);
 	    responsefromWeb.send(error);
 	  });
-     responsefromWeb.status(200).send('connecttoMC');
+     
 };
 
 /*
@@ -185,7 +185,7 @@ exports.getCouponCode = function (req, responsefromWeb) {
 	console.log('RESTENDPOINT : '+process.env.RESTENDPOINT);
   axios({
 	    method: 'get',
-	    url: 'https://mc7gdqrf6hn02-0-h9j22dns1twq.rest.marketingcloudapis.com/data/v1/customobjectdata/key/getcouponcode/rowset',
+	    url: process.env.RESTENDPOINT+'/data/v1/customobjectdata/key/getcouponcode/rowset',
 	    data: couponData,
 	    headers:{
 	       'Authorization': 'Bearer ' + token,
@@ -210,6 +210,7 @@ exports.getCouponCode = function (req, responsefromWeb) {
   	}
 
     //responsefromWeb.send(couponData);
+	  responsefromWeb.status(200).send(couponData);
   })
   .catch(function (error) {
     console.log(error);
@@ -223,7 +224,7 @@ exports.getCouponCode = function (req, responsefromWeb) {
 exports.postCouponData = function (req, responsefromWeb) {
     axios({
 	    method: 'post',
-	    url: 'https://mc7gdqrf6hn02-0-h9j22dns1twq.rest.marketingcloudapis.com/hub/v1/dataevents/key:cjacouponpost/rowset',
+	    url: process.env.RESTENDPOINT+'/hub/v1/dataevents/key:cjacouponpost/rowset',
 	    data: couponData,
 	    headers:{
 	       'Authorization': 'Bearer ' + token,
@@ -234,6 +235,7 @@ exports.postCouponData = function (req, responsefromWeb) {
 				var json = CircularJSON.stringify(response);
 	      console.log(json);
 	      //responsefromWeb.send(json);
+	    responsefromWeb.status(200).send(json);
 		}) 
 		 .catch(function (error) {
 			console.log(error);
