@@ -102,6 +102,27 @@ app.get('/getCouponCode', function(request, responsefromWeb) {
   });
 })
 
+app.get('/postCouponData', function(request, responsefromWeb) {
+	
+	axios({
+	    method: 'post',
+	    url: process.env.RESTENDPOINT+'/hub/v1/dataevents/key:cjacouponpost/rowset',
+	    data: couponData,
+	    headers:{
+	       'Authorization': 'Bearer ' + token,
+	       'Content-Type': 'application/json',
+	    }
+	  })
+	    .then(function(response) {
+				var json = CircularJSON.stringify(response);
+	      console.log(json);
+	      responsefromWeb.send(json);
+		}) 
+		 .catch(function (error) {
+			console.log(error);
+		});
+})
+
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
 })
