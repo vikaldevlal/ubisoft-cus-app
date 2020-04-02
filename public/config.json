@@ -23,8 +23,7 @@
 					"region": "{{Contact.Attribute.LatestWebhook.Region}}",
 					"JourneyDefinitionId": "{{Context.DefinitionId}}",
 					"JourneyDefinitionInstanceId": "{{Context.Context.DefinitionInstanceId}}"
-					
-                }									
+				}									
 			],
           "outArguments": [],
           "url": "https://latestwebhook.herokuapp.com/journeybuilder/execute",
