@@ -128,3 +128,37 @@ exports.validate = function (req, res) {
     //res.send(200, 'Validate');;-express deprecated res.send(status, body)
      res.status(200).send('Validate');
 };
+
+
+/*
+ * POST Handler for /connecttoMC/ route of Activity.
+ */
+exports.connecttoMC = function (req, res) {
+    // Data from the req and put it in an array accessible to the main app.
+    //console.log( req.body );
+    logData(req);
+    //res.send(200, 'Validate');;-express deprecated res.send(status, body)
+     res.status(200).send('Validate');
+};
+
+/*
+ * POST Handler for /getCouponCode/ route of Activity.
+ */
+exports.getCouponCode = function (req, res) {
+    // Data from the req and put it in an array accessible to the main app.
+    //console.log( req.body );
+    logData(req);
+    //res.send(200, 'Validate');;-express deprecated res.send(status, body)
+     res.status(200).send('Validate');
+};
+
+/*
+ * POST Handler for /postCouponData/ route of Activity.
+ */
+exports.postCouponData = function (req, res) {
+    // Data from the req and put it in an array accessible to the main app.
+    //console.log( req.body );
+    logData(req);
+    //res.send(200, 'Validate');;-express deprecated res.send(status, body)
+     res.status(200).send('Validate');
+};
