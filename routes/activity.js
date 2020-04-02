@@ -90,7 +90,11 @@ exports.execute = function (req, res) {
             // decoded in arguments
             var decodedArgs = decoded.inArguments[0];
             
-            console.log('In Arguments : '+decodedArgs);
+            console.log('In Arguments : ContactKey : '+decodedArgs.ContactKey);
+            console.log('In Arguments : FirstName : '+decodedArgs.FirstName);
+            console.log('In Arguments : emailAddress :'+decodedArgs.emailAddress);
+            console.log('In Arguments : JourneyDefinitionId : '+decodedArgs.JourneyDefinitionId);
+            console.log('In Arguments : JourneyDefinitionInstanceId : '+decodedArgs.JourneyDefinitionInstanceId);
             
             logData(req);
             //res.send(200, 'Execute');;-express deprecated res.send(status, body)
