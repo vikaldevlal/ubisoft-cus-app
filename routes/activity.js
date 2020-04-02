@@ -9,7 +9,7 @@ var bodyParser  = require('body-parser');
 var errorhandler = require('errorhandler');
 var http        = require('http');
 var path        = require('path');
-const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
+const JWT = = require('./lib/jwtDecoder');
 var request     = require('request')
 const axios = require('axios');
 const CircularJSON = require('circular-json');
