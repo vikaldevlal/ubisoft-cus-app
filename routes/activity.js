@@ -10,7 +10,7 @@ var errorhandler = require('errorhandler');
 var http        = require('http');
 var path        = require('path');
 var util = require( 'util' );
-const JWT = require('../lib/jwtDecoder');
+const jwt = require('jsonwebtoken');
 var req     = require('request');
 const axios = require('axios');
 const CircularJSON = require('circular-json');
@@ -88,13 +88,7 @@ exports.execute = function (req, res) {
 
     console.log('JWT: '+process.env.jwtSecret);
     // example on how to decode JWT
-    JWT(req.body, process.env.jwtSecret, (err, decoded) => {
-
-        // verification error -> unauthorized request
-        if (err) {
-            console.error(err);
-            return res.status(401).end();
-        }
+    const decoded = jwt.verify(token,process.env.jwtSecret);
 
         if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
             
@@ -116,7 +110,7 @@ exports.execute = function (req, res) {
             console.error('inArguments invalid.');
             return res.status(400).end();
         }
-    });
+   
 };
 
 
