@@ -90,30 +90,28 @@ exports.execute = function (req, res) {
 	
         console.log('req.body: ' + req.body );
         console.log('req.body.inArguments: ' + req.body.inArguments );
+	
+	var aArgs = req.body.inArguments;
+	var oArgs = {};
+	for (var i=0; i<aArgs.length; i++) {  
+		for (var key in aArgs[i]) { 
+			oArgs[key] = aArgs[i][key]; 
+		}
+	}
 
-    // example on how to decode JWT
-    JWT(req.body, process.env.jwtSecret, (err, decoded) => {
+	var ContactKey = oArgs.ContactKey;
+	var FirstName = oArgs.FirstName;
+	var emailAddress = oArgs.emailAddress;
+	var JourneyDefinitionId = oArgs.JourneyDefinitionId;
+	
+	 console.log('ContactKey: ' + ContactKey );
+	 console.log('FirstName: ' + FirstName );
+	 console.log('emailAddress: ' + emailAddress );
+	 console.log('JourneyDefinitionId: ' + JourneyDefinitionId );
+	
 
-        // verification error -> unauthorized request
-        if (err) {
-            console.error(err);
-            return res.status(401).end();
-        }
-
-        if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
-            
-            // decoded in arguments
-            var decodedArgs = decoded.inArguments[0];
-		
-		console.log('decodedArgs: ' + decodedArgs );
-            
-            logData(req);
-            res.send(200, 'Execute');
-        } else {
-            console.error('inArguments invalid.');
-            return res.status(400).end();
-        }
-    });
+	  res.status(200).send('Execute');
+    
    
 };
 
@@ -145,11 +143,7 @@ exports.validate = function (req, res) {
  * POST Handler for /connecttoMC/ route of Activity.
  */
 exports.connecttoMC = function (req, responsefromWeb) {
-    // Data from the req and put it in an array accessible to the main app.
-    console.log('Client ID : '+process.env.CLIENT_ID);
-    console.log('Client Secret : '+process.env.CLIENT_SECRET);	
-	console.log('AUTHENDPOINT : '+process.env.AUTHENDPOINT);	
-    logData(req);
+    // Data from the req and put it in an array accessible to the main app.	
     
     var conData = {
     'clientId': process.env.CLIENT_ID,
