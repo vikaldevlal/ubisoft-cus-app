@@ -166,7 +166,7 @@ exports.connecttoMC = function (req, responsefromWeb) {
 	  }
 	})
 	  .then(function(response) {
-	  		responsefromWeb.send('Authorization Sent');
+	  		//responsefromWeb.send('Authorization Sent');
 	  		token = response.data.accessToken;
 		console.log('token : '+token);
 	  	
@@ -209,7 +209,7 @@ exports.getCouponCode = function (req, responsefromWeb) {
   		couponData.push(couponItem);
   	}
 
-    responsefromWeb.send(couponData);
+    //responsefromWeb.send(couponData);
   })
   .catch(function (error) {
     console.log(error);
@@ -233,7 +233,7 @@ exports.postCouponData = function (req, responsefromWeb) {
 	    .then(function(response) {
 				var json = CircularJSON.stringify(response);
 	      console.log(json);
-	      responsefromWeb.send(json);
+	      //responsefromWeb.send(json);
 		}) 
 		 .catch(function (error) {
 			console.log(error);
