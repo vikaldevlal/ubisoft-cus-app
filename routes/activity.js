@@ -55,7 +55,8 @@ exports.edit = function (req, res) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
     logData(req);
-    res.send(200, 'Edit');
+    //res.send(200, 'Edit');-express deprecated res.send(status, body)
+    res.status(200).send('Edit');
 };
 
 /*
@@ -65,7 +66,8 @@ exports.save = function (req, res) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
     logData(req);
-    res.send(200, 'Save');
+    //res.send(200, 'Save');;-express deprecated res.send(status, body)
+     res.status(200).send('Save');
 };
 
 /*
@@ -73,6 +75,7 @@ exports.save = function (req, res) {
  */
 exports.execute = function (req, res) {
 
+    console.log('JWT: '+process.env.jwtSecret);
     // example on how to decode JWT
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
 
@@ -87,8 +90,11 @@ exports.execute = function (req, res) {
             // decoded in arguments
             var decodedArgs = decoded.inArguments[0];
             
+            console.log('In Arguments : '+decodedArgs);
+            
             logData(req);
-            res.send(200, 'Execute');
+            //res.send(200, 'Execute');;-express deprecated res.send(status, body)
+            res.status(200).send('Execute');
         } else {
             console.error('inArguments invalid.');
             return res.status(400).end();
@@ -104,7 +110,8 @@ exports.publish = function (req, res) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
     logData(req);
-    res.send(200, 'Publish');
+    //res.send(200, 'Publish');;-express deprecated res.send(status, body)
+    res.status(200).send('Publish');
 };
 
 /*
@@ -114,5 +121,6 @@ exports.validate = function (req, res) {
     // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
     logData(req);
-    res.send(200, 'Validate');
+    //res.send(200, 'Validate');;-express deprecated res.send(status, body)
+     res.status(200).send('Validate');
 };
