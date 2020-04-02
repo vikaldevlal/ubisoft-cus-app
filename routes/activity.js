@@ -99,10 +99,12 @@ exports.execute = function (req, res) {
             
             // decoded in arguments
             var decodedArgs = decoded.inArguments[0];
+		
+		console.log('decodedArgs : '+CircularJSON.stringify(response));
             
             console.log('In Arguments : ContactKey : '+decodedArgs.ContactKey);
             console.log('In Arguments : FirstName : '+decodedArgs.FirstName);
-            console.log('In Arguments : emailAddress :'+decodedArgs.);
+            console.log('In Arguments : emailAddress :'+decodedArgs.emailAddress);
             console.log('In Arguments : JourneyDefinitionId : '+decodedArgs.JourneyDefinitionId);
             console.log('In Arguments : JourneyDefinitionInstanceId : '+decodedArgs.JourneyDefinitionInstanceId);
             
