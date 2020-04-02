@@ -39,7 +39,7 @@ app.post('/journeybuilder/publish/', activity.publish );
 app.post('/journeybuilder/execute/', activity.execute );
 app.get('/getCouponCode', activity.getCouponCode );
 app.get('/connecttoMC', activity.connecttoMC );
-app.post('/postCouponData', activity.postCouponData );
+app.get('/postCouponData', activity.postCouponData );
 
 
 
