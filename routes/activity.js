@@ -183,7 +183,6 @@ exports.connecttoMC = function (req, responsefromWeb) {
  */
 exports.getCouponCode = function (req, responsefromWeb) {
   couponData=[];
-	console.log('RESTENDPOINT : '+process.env.RESTENDPOINT);
   axios({
 	    method: 'get',
 	    url: process.env.RESTENDPOINT+'/data/v1/customobjectdata/key/getcouponcode/rowset',
@@ -211,7 +210,6 @@ exports.getCouponCode = function (req, responsefromWeb) {
   	}
 
     responsefromWeb.send(couponData);
-	 // responsefromWeb.status(200).send(couponData);
   })
   .catch(function (error) {
     console.log(error);
@@ -236,7 +234,6 @@ exports.postCouponData = function (req, responsefromWeb) {
 				var json = CircularJSON.stringify(response);
 	      console.log(json);
 	      responsefromWeb.send(json);
-	    //responsefromWeb.status(200).send(json);
 		}) 
 		 .catch(function (error) {
 			console.log(error);
