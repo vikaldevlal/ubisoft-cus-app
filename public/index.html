@@ -49,8 +49,8 @@
 	});
  	}
 
- 	function connecttoMCData(){
- 		$.get( "/connecttoMCData", function( data ) {
+ 	function postCouponData(){
+ 		$.get( "/postCouponData", function( data ) {
 	 	console.log($.parseJSON(data));
 	});
  	}
@@ -77,7 +77,7 @@
         <button class="btn-success" onclick="getCoupon();">Get Coupon</button>
       </div>
       <div class="col-4">
-       <button class="btn-primary " onclick="connecttoMCData();">Save Coupon User</button>
+       <button class="btn-primary " onclick="postCouponData();">Save Coupon Data</button>
       </div>
     </div>
     </div>
