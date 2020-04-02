@@ -86,6 +86,23 @@ exports.save = function (req, res) {
  * POST Handler for /execute/ route of Activity.
  */
 exports.execute = function (req, res) {
+	
+	var aArgs = req.body.inArguments;
+        var oArgs = {};
+        for (var i=0; i<aArgs.length; i++) {
+            for (var key in aArgs[i]) {
+                oArgs[key] = aArgs[i][key];
+          console.log('oArgs[key]:'+oArgs[key]);
+            }
+        }
+        console.log('req.body: ' + req.body );
+        console.log('req.body.inArguments: ' + req.body.inArguments );
+
+        var contactKey = oArgs.ContactKey;
+        var email = oArgs.emailAddress;
+
+        console.log('contactKey: ' + contactKey );
+        console.log('email: ' + email );
 
     // example on how to decode JWT
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
