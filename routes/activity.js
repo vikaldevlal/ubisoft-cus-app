@@ -146,7 +146,7 @@ exports.validate = function (req, res) {
 /*
  * POST Handler for /connecttoMC/ route of Activity.
  */
-exports.connecttoMC = function (req, res) {
+exports.connecttoMC = function (req, responsefromWeb) {
     // Data from the req and put it in an array accessible to the main app.
     console.log('Client ID : '+process.env.CLIENT_ID);
     console.log('Client Secret : '+process.env.CLIENT_SECRET);	
@@ -166,7 +166,7 @@ exports.connecttoMC = function (req, res) {
 	  }
 	})
 	  .then(function(response) {
-	  		res.send('Authorization Sent');
+	  		responsefromWeb.send('Authorization Sent');
 	  		token = response.data.accessToken;
 	  	
 	}).catch(function (error) {
@@ -179,7 +179,7 @@ exports.connecttoMC = function (req, res) {
 /*
  * POST Handler for /getCouponCode/ route of Activity.
  */
-exports.getCouponCode = function (req, res) {
+exports.getCouponCode = function (req, responsefromWeb) {
   couponData=[];
   axios({
 	    method: 'get',
@@ -207,18 +207,18 @@ exports.getCouponCode = function (req, res) {
   		couponData.push(couponItem);
   	}
 
-    res.send(couponData);
+    responsefromWeb.send(couponData);
   })
   .catch(function (error) {
     console.log(error);
-    res.send(error);
+    responsefromWeb.send(error);
   });
 };
 
 /*
  * POST Handler for /postCouponData/ route of Activity.
  */
-exports.postCouponData = function (req, res) {
+exports.postCouponData = function (req, responsefromWeb) {
     axios({
 	    method: 'post',
 	    url: process.env.RESTENDPOINT+'/hub/v1/dataevents/key:cjacouponpost/rowset',
@@ -231,7 +231,7 @@ exports.postCouponData = function (req, res) {
 	    .then(function(response) {
 				var json = CircularJSON.stringify(response);
 	      console.log(json);
-	      res.send(json);
+	      responsefromWeb.send(json);
 		}) 
 		 .catch(function (error) {
 			console.log(error);
