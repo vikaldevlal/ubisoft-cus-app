@@ -226,5 +226,5 @@ exports.postCouponData = function (req, res) {
 		 .catch(function (error) {
 			console.log(error);
 		});
-})
+});
 };
