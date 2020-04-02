@@ -67,17 +67,19 @@ define([
     }
 
     function save() {
-        var postcardURLValue = $('#postcard-url').val();
-        var postcardTextValue = $('#postcard-text').val();
 
         payload['arguments'].execute.inArguments = [{
-            "tokens": authTokens,
-            "emailAddress": "{{Contact.Attribute.PostcardJourney.EmailAddress}}"
+            "ContactKey":"{{Contact.Key}}",
+			"FirstName":"{{Contact.Attribute.LatestWebhook.FirstName}}",
+            "emailAddress": "{{Contact.Attribute.LatestWebhook.Email}}",
+			"region": "{{Contact.Attribute.LatestWebhook.Region}}",
+			"JourneyDefinitionId": "{{Context.DefinitionId}}",
+			"JourneyDefinitionInstanceId": "{{Context.Context.DefinitionInstanceId}}"
         }];
         
         payload['metaData'].isConfigured = true;
 
-        console.log(payload);
+        console.log('payload : '+payload);
         connection.trigger('updateActivity', payload);
     }
 
