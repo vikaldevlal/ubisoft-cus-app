@@ -148,7 +148,9 @@ exports.validate = function (req, res) {
  */
 exports.connecttoMC = function (req, res) {
     // Data from the req and put it in an array accessible to the main app.
-    //console.log( req.body );
+    console.log('Client ID : '+process.env.CLIENT_ID);
+    console.log('Client Secret : '+process.env.CLIENT_SECRET);	
+	console.log('AUTHENDPOINT : '+process.env.AUTHENDPOINT);	
     logData(req);
     
     var conData = {
