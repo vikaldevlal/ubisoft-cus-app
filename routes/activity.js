@@ -8,7 +8,8 @@ var express     = require('express');
 var bodyParser  = require('body-parser');
 var errorhandler = require('errorhandler');
 var http        = require('http');
-var path        = require('path');
+const Path = require('path');
+const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
 var util = require( 'util' );
 const jwt = require('jsonwebtoken');
 var req     = require('request');
@@ -86,30 +87,27 @@ exports.save = function (req, res) {
  */
 exports.execute = function (req, res) {
 
-    console.log('JWT: '+process.env.jwtSecret);
     // example on how to decode JWT
-    const decoded = jwt.verify(token,process.env.jwtSecret);
+    JWT(req.body, process.env.jwtSecret, (err, decoded) => {
+
+        // verification error -> unauthorized request
+        if (err) {
+            console.error(err);
+            return res.status(401).end();
+        }
 
         if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
             
             // decoded in arguments
             var decodedArgs = decoded.inArguments[0];
-		
-		console.log('decodedArgs : '+CircularJSON.stringify(response));
-            
-            console.log('In Arguments : ContactKey : '+decodedArgs.ContactKey);
-            console.log('In Arguments : FirstName : '+decodedArgs.FirstName);
-            console.log('In Arguments : emailAddress :'+decodedArgs.emailAddress);
-            console.log('In Arguments : JourneyDefinitionId : '+decodedArgs.JourneyDefinitionId);
-            console.log('In Arguments : JourneyDefinitionInstanceId : '+decodedArgs.JourneyDefinitionInstanceId);
             
             logData(req);
-            //res.send(200, 'Execute');;-express deprecated res.send(status, body)
-            res.status(200).send('Execute');
+            res.send(200, 'Execute');
         } else {
             console.error('inArguments invalid.');
             return res.status(400).end();
         }
+    });
    
 };
 
