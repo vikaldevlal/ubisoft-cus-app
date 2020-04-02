@@ -185,7 +185,7 @@ exports.getCouponCode = function (req, responsefromWeb) {
 	console.log('RESTENDPOINT : '+process.env.RESTENDPOINT);
   axios({
 	    method: 'get',
-	    url: process.env.RESTENDPOINT+'/data/v1/customobjectdata/key/getcouponcode/rowset',
+	    url: 'https://mc7gdqrf6hn02-0-h9j22dns1twq.rest.marketingcloudapis.com/data/v1/customobjectdata/key/getcouponcode/rowset',
 	    data: couponData,
 	    headers:{
 	       'Authorization': 'Bearer ' + token,
@@ -223,7 +223,7 @@ exports.getCouponCode = function (req, responsefromWeb) {
 exports.postCouponData = function (req, responsefromWeb) {
     axios({
 	    method: 'post',
-	    url: process.env.RESTENDPOINT+'/hub/v1/dataevents/key:cjacouponpost/rowset',
+	    url: 'https://mc7gdqrf6hn02-0-h9j22dns1twq.rest.marketingcloudapis.com/hub/v1/dataevents/key:cjacouponpost/rowset',
 	    data: couponData,
 	    headers:{
 	       'Authorization': 'Bearer ' + token,
