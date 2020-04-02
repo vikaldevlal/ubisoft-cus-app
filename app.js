@@ -32,6 +32,12 @@ if ('development' == app.get('env')) {
   app.use(errorhandler());
 }
 
+// Custom Hello World Activity Routes
+app.post('/journeybuilder/save/', activity.save );
+app.post('/journeybuilder/validate/', activity.validate );
+app.post('/journeybuilder/publish/', activity.publish );
+app.post('/journeybuilder/execute/', activity.execute );
+
 
 app.get('/getCouponCode', function(request, responsefromWeb) {
 	couponData=[];
