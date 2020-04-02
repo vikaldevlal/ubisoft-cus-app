@@ -172,9 +172,9 @@ exports.connecttoMC = function (req, responsefromWeb) {
 	  	
 	}).catch(function (error) {
 	    console.log(error);
-	    res.send(error);
+	    responsefromWeb.send(error);
 	  });
-     res.status(200).send('connecttoMC');
+     responsefromWeb.status(200).send('connecttoMC');
 };
 
 /*
