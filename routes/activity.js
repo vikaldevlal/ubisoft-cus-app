@@ -168,6 +168,7 @@ exports.connecttoMC = function (req, responsefromWeb) {
 	  .then(function(response) {
 	  		responsefromWeb.send('Authorization Sent');
 	  		token = response.data.accessToken;
+		console.log('token : '+token);
 	  	
 	}).catch(function (error) {
 	    console.log(error);
@@ -181,6 +182,7 @@ exports.connecttoMC = function (req, responsefromWeb) {
  */
 exports.getCouponCode = function (req, responsefromWeb) {
   couponData=[];
+	console.log('RESTENDPOINT : '+process.env.RESTENDPOINT);
   axios({
 	    method: 'get',
 	    url: process.env.RESTENDPOINT+'/data/v1/customobjectdata/key/getcouponcode/rowset',
