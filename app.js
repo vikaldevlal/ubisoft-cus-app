@@ -38,8 +38,32 @@ app.post('/journeybuilder/validate/', activity.validate );
 app.post('/journeybuilder/publish/', activity.publish );
 app.post('/journeybuilder/execute/', activity.execute );
 //app.get('/getCouponCode', activity.getCouponCode );
-app.get('/connecttoMC', activity.connecttoMC );
+//app.get('/connecttoMC', activity.connecttoMC );
 app.post('/postCouponData', activity.postCouponData );
+
+
+app.get('/connecttoMC', function(request, responsefromWeb) {
+	var conData = {
+    'clientId': process.env.CLIENT_ID,
+    'clientSecret': process.env.CLIENT_SECRET  
+  	}
+	axios({
+	  method:'post',
+	  url:process.env.AUTHENDPOINT,
+	  data: conData,
+	  headers:{
+       'Content-Type': 'application/json',
+	  }
+	})
+	  .then(function(response) {
+	  		responsefromWeb.send('Authorization Sent');
+	  		token = response.data.accessToken;
+	  	
+	}).catch(function (error) {
+	    console.log(error);
+	    responsefromWeb.send(error);
+	  });
+})
 
 
 app.get('/getCouponCode', function(request, responsefromWeb) {
