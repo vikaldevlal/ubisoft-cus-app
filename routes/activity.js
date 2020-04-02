@@ -1,11 +1,16 @@
 'use strict';
-var util = require('util');
+
 
 // Deps
-const Path = require('path');
+
+
+var express     = require('express');
+var bodyParser  = require('body-parser');
+var errorhandler = require('errorhandler');
+var http        = require('http');
+var path        = require('path');
 const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
-var util = require('util');
-var http = require('https');
+var request     = require('request')
 const axios = require('axios');
 const CircularJSON = require('circular-json');
 var token='';
@@ -97,7 +102,7 @@ exports.execute = function (req, res) {
             
             console.log('In Arguments : ContactKey : '+decodedArgs.ContactKey);
             console.log('In Arguments : FirstName : '+decodedArgs.FirstName);
-            console.log('In Arguments : emailAddress :'+decodedArgs.emailAddress);
+            console.log('In Arguments : emailAddress :'+decodedArgs.);
             console.log('In Arguments : JourneyDefinitionId : '+decodedArgs.JourneyDefinitionId);
             console.log('In Arguments : JourneyDefinitionInstanceId : '+decodedArgs.JourneyDefinitionInstanceId);
             
