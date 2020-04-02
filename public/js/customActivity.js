@@ -74,7 +74,7 @@ define([
             "emailAddress": "{{Contact.Attribute.LatestWebhook.Email}}",
 			"region": "{{Contact.Attribute.LatestWebhook.Region}}",
 			"JourneyDefinitionId": "{{Context.DefinitionId}}",
-			"JourneyDefinitionInstanceId": "{{Context.Context.DefinitionInstanceId}}"
+			"JourneyDefinitionInstanceId": "{{Context.DefinitionInstanceId}}"
         }];
         
         payload['metaData'].isConfigured = true;
