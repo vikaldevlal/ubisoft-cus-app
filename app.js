@@ -37,10 +37,46 @@ app.post('/journeybuilder/save/', activity.save );
 app.post('/journeybuilder/validate/', activity.validate );
 app.post('/journeybuilder/publish/', activity.publish );
 app.post('/journeybuilder/execute/', activity.execute );
-app.get('/getCouponCode', activity.getCouponCode );
+//app.get('/getCouponCode', activity.getCouponCode );
 app.get('/connecttoMC', activity.connecttoMC );
 app.post('/postCouponData', activity.postCouponData );
 
+
+app.get('/getCouponCode', function(request, responsefromWeb) {
+	couponData=[];
+  axios({
+	    method: 'get',
+	    url: process.env.RESTENDPOINT+'/data/v1/customobjectdata/key/getcouponcode/rowset',
+	    data: couponData,
+	    headers:{
+	       'Authorization': 'Bearer ' + token,
+	       'Content-Type': 'application/json',
+	    }
+	  })
+  .then(function (response) { 
+	  
+  	datafromCall = response.data.items;
+	  
+  	for(var x=0;x<datafromCall.length;x++){
+  		var couponItem = {
+  			"keys":{
+  				"CouponCode" : datafromCall[x].keys.couponcode
+  			},
+  			"values":{
+					
+					"FirstName": 'John'+x
+  			}
+  		}
+  		couponData.push(couponItem);
+  	}
+
+    responsefromWeb.send(couponData);
+  })
+  .catch(function (error) {
+    console.log(error);
+    responsefromWeb.send(error);
+  });
+})
 
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'))
