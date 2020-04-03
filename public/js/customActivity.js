@@ -31,7 +31,11 @@ define( function( require ) {
 			//see createCase for an example on how to use config.json data during activity configuration.            
         }
         
-		
+	connection.trigger('updateButton', {
+            button: 'next',
+            text: 'done',
+            visible: true
+        });	
         
     });
 
