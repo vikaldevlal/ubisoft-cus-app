@@ -14,7 +14,7 @@ requirejs.config({
 	}
 });
 
-requirejs(['jquery.min', '../customActivity'], function ($, customEvent) {
+requirejs(['jquery.min', 'customActivity'], function ($, customEvent) {
 });
 
 requirejs.onError = function (err) {
