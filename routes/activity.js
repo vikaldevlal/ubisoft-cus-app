@@ -88,26 +88,7 @@ exports.save = function (req, res) {
 exports.execute = function (req, res) {
 	
 	
-        console.log('req.body: ' + req.body );
-        console.log('req.body.inArguments: ' + req.body.inArguments );
-	
-	var aArgs = req.body.inArguments;
-	var oArgs = {};
-	for (var i=0; i<aArgs.length; i++) {  
-		for (var key in aArgs[i]) { 
-			oArgs[key] = aArgs[i][key]; 
-		}
-	}
-
-	var ContactKey = oArgs.ContactKey;
-	var FirstName = oArgs.FirstName;
-	var emailAddress = oArgs.emailAddress;
-	var JourneyDefinitionId = oArgs.JourneyDefinitionId;
-	
-	 console.log('ContactKey: ' + ContactKey );
-	 console.log('FirstName: ' + FirstName );
-	 console.log('emailAddress: ' + emailAddress );
-	 console.log('JourneyDefinitionId: ' + JourneyDefinitionId );
+         logData(req);
 	
 
 	  res.status(200).send('Execute');
