@@ -28,7 +28,7 @@
           "outArguments": [],
           "url": "https://latestwebhook.herokuapp.com/journeybuilder/execute",
            "verb": "POST",
-            "body": "{"ContactKey":"{{Contact.Key}}"}",
+            "body": "{ContactKey:"{{Contact.Key}}"}",
             "header": "",
             "format": "json",
             "useJwt": false,
