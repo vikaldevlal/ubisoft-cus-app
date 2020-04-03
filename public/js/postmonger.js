@@ -41,6 +41,7 @@
 
 	//Create a new Postmonger Connection
 	Connection = Postmonger.Connection = function (options) {
+		console.log('Inside Postmonger Connection');
 		options = (typeof(options) === 'object') ? options : {};
 
 		var connect = options.connect || _window.parent;
@@ -80,6 +81,7 @@
 
 	//Postmonger.Events - Hacked together from Backbone.Events and two Underscore functions.
 	Events = Postmonger.Events = function () {
+		console.log('Inside Postmonger Events');
 		var eventSplitter = /\s+/;
 		var self = this;
 
@@ -210,6 +212,7 @@
 
 	//Create a new Postmonger Session
 	Session = Postmonger.Session = function () {
+		console.log('Inside Postmonger Session');
 		var args = (arguments.length>0) ? Array.prototype.slice.call(arguments, 0) : [{}];
 		var connections = [];
 		var incoming = new Events();
