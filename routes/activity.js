@@ -90,7 +90,7 @@ exports.execute = function (req, res) {
 	
          logData(req);
 	//merge the array of objects.
-	var aArgs = req.inArguments;
+	var aArgs = req.body.inArguments;
 	var inArgs = {};
 	for (var i=0; i<aArgs.length; i++) {  
 		for (var key in aArgs[i]) { 
