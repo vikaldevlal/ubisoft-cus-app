@@ -80,6 +80,7 @@ define( function( require ) {
         payload['metaData'].isConfigured = true;
 
         console.log('payload : '+payload);
+	 console.log('payload 2 : '+JSON.stringify(payload));
         connection.trigger('updateActivity', payload);
     }
 
