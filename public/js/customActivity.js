@@ -7,6 +7,7 @@ define( function( require ) {
     var connection = new Postmonger.Session();
     var authTokens = {};
     var payload = {};
+    var eventDefinitionKey;	
     $(window).ready(onRender);
 
     connection.on('initActivity', initialize);
@@ -65,6 +66,21 @@ define( function( require ) {
         
         console.log('Inside onGetEndpoints : '+endpoints);
     }
+	
+
+connection.trigger('requestTriggerEventDefinition');
+
+connection.on('requestedTriggerEventDefinition',
+function(eventDefinitionModel) {
+    if(eventDefinitionModel){
+
+        eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
+        console.log("Event Definition Key : " + eventDefinitionKey);
+        /*If you want to see all*/
+        console.log('eventDefinitionModel : '+JSON.stringify(eventDefinitionModel));
+    }
+
+});	
 
     function save() {
 
