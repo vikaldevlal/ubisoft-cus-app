@@ -89,7 +89,17 @@ exports.execute = function (req, res) {
 	
 	
          logData(req);
-	
+	//merge the array of objects.
+	var aArgs = req.body.inArguments;
+	var inArgs = {};
+	for (var i=0; i<aArgs.length; i++) {  
+		for (var key in aArgs[i]) { 
+			inArgs[key] = aArgs[i][key]; 
+		}
+	}
+
+	var email = inArgs.emailAddress;
+	console.log('email :'+email);
 
 	  res.status(200).send('Execute');
     
