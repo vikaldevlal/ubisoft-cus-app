@@ -119,11 +119,12 @@
 			}
 
 			events = events.split(eventSplitter);
-
+			
 			self._callbacks = self._callbacks || {};
 			calls = self._callbacks;
 
 			while (event = events.shift()) {
+				console.log('Inside Postmonger Events : Event : '+event);
 				list = calls[event];
 
 				node = (list) ? list.tail : {};
@@ -158,6 +159,7 @@
 			events = (events) ? events.split(eventSplitter) : self._keys(calls);
 
 			while (event = events.shift()) {
+				console.log('Inside Postmonger Events : Event2 : '+event);
 				node = calls[event];
 				delete calls[event];
 				if (!node || !(callback || context)) {
@@ -189,6 +191,7 @@
 			rest = Array.prototype.slice.call(arguments, 1);
 
 			while (event = events.shift()) {
+				console.log('Inside Postmonger Events : Event3 : '+event);
 				if (node = calls[event]) {
 					tail = node.tail;
 					while ((node = node.next) !== tail) {
@@ -219,7 +222,7 @@
 		var outgoing = new Events();
 		var self = this;
 		var connection, i, j, l, ln, postMessageListener;
-
+		
 		//Session API hooks
 		self.on = incoming.on;
 		self.off = incoming.off;
@@ -257,6 +260,7 @@
 
 		//Listener for incoming messages
 		postMessageListener = function(event){
+			console.log('Inside postMessageListener :  Event : '+event);
 			var conn = null;
 			var message = [];
 			var data;
@@ -326,6 +330,7 @@
 			}
 
 			for (k=0, len=connections.length; k<len; k++) {
+				console.log('Postmonger Message : '+JSON.stringify(message));
 				connections[k].connect.postMessage(JSON.stringify(message), connections[k].to);
 			}
 		});
