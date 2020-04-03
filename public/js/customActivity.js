@@ -1,3 +1,9 @@
+requirejs.config({
+    paths: {
+        postmonger: 'js/postmonger'
+    }
+});
+
 define([
     'postmonger'
 ], function (
