@@ -18,6 +18,7 @@ define( function( require ) {
     function onRender() {
         // JB will respond the first time 'ready' is called with 'initActivity'
         connection.trigger('ready');
+	console.log('Inside Render');
 
         connection.trigger('requestTokens');
         connection.trigger('requestEndpoints');
