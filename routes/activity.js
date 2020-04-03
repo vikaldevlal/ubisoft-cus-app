@@ -42,13 +42,13 @@ function logData(req) {
         originalUrl: req.originalUrl
     });
     console.log("body: " + util.inspect(req.body));
-    console.log("headers: " + req.headers);
-    console.log("trailers: " + req.trailers);
+    console.log("headers: " + util.inspect(req.headers));
+    console.log("trailers: " + util.inspect(req.trailers));
     console.log("method: " + req.method);
     console.log("url: " + req.url);
     console.log("params: " + util.inspect(req.params));
     console.log("query: " + util.inspect(req.query));
-    console.log("route: " + req.route);
+    console.log("route: " + util.inspect(req.route));
     console.log("cookies: " + req.cookies);
     console.log("ip: " + req.ip);
     console.log("path: " + req.path);
