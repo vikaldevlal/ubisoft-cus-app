@@ -28,7 +28,7 @@
           "outArguments": [],
           "url": "https://latestwebhook.herokuapp.com/journeybuilder/execute",
            "verb": "POST",
-            "body": "{ContactKey:{{Contact.Key}}}",
+            "body": "",
             "header": "",
             "format": "json",
             "useJwt": true,
@@ -40,22 +40,22 @@
       "save": {
         "url": "https://latestwebhook.herokuapp.com/journeybuilder/save",
           "verb": "POST",
-        "useJwt": false
+        "useJwt": true
        },
        "publish": {
         "url": "https://latestwebhook.herokuapp.com/journeybuilder/publish",
            "verb": "POST",
-        "useJwt": false
+        "useJwt": true
        },
       "stop": {
         "url": "https://latestwebhook.herokuapp.com/journeybuilder/stop",
            "verb": "POST",
-        "useJwt": false
+        "useJwt": true
       },
       "validate": {
         "url": "https://latestwebhook.herokuapp.com/journeybuilder/validate",
         "verb": "POST",
-        "useJwt": false
+        "useJwt": true
       }
     },
     "wizardSteps": [
