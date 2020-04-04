@@ -102,7 +102,13 @@ exports.execute = function (req, res) {
             // decoded in arguments
             var decodedArgs = decoded.inArguments[0];
 	console.log("decodedArgs : " + util.inspect(decodedArgs));
-            
+		var iArgs=util.inspect(decodedArgs);
+		console.log("Contact key : " + iArgs.ContactKey);
+		console.log("Email : " + iArgs.emailAddress);
+		console.log("FirstName : " + iArgs.FirstName);
+		console.log("Region : " + iArgs.region);
+		console.log("Segment : " + iArgs.segment);
+		
             logData(req);
             res.send(200, 'Execute');
         } else {
