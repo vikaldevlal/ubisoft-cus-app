@@ -18,10 +18,10 @@
            "inArguments":[
 				{
 					"ContactKey":"{{Contact.Key}}",
-					"FirstName":"{{Contact.Attribute.WebHookAudienceDE.FirstName}}",
-                		        "emailAddress": "{{Contact.Attribute.WebHookAudienceDE.Email}}",
-					"region": "{{Contact.Attribute.WebHookAudienceDE.Region}}",
-					"segment": "{{Contact.Attribute.WebHookAudienceDE.Segment}}",
+					"FirstName":"{{Event.EventDefinitionKey.FirstName}}",
+                		        "emailAddress": "{{Event.EventDefinitionKey.Email}}",
+					"region": "{{Event.EventDefinitionKey.Region}}",
+					"segment": "{{Event.EventDefinitionKey.Segment}}",
 					"JourneyDefinitionId": "{{Context.DefinitionId}}",
 					"JourneyDefinitionInstanceId": "{{Context.DefinitionInstanceId}}"
 				}									
