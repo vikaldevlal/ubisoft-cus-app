@@ -48,7 +48,7 @@ function logData(req) {
     console.log("url: " + req.url);
     console.log("params: " + util.inspect(req.params));
     console.log("query: " + util.inspect(req.query));
-    console.log("route: " + util.inspect(req.route));
+    console.log("route: " +req.route);
     console.log("cookies: " + req.cookies);
     console.log("ip: " + req.ip);
     console.log("path: " + req.path);
@@ -103,11 +103,24 @@ exports.execute = function (req, res) {
             var decodedArgs = decoded.inArguments[0];
 	console.log("decodedArgs : " + util.inspect(decodedArgs));
 		var iArgs=util.inspect(decodedArgs);
+		var sArgs=JSON.stringify(decodedArgs);
 		console.log("Contact key : " + iArgs.ContactKey);
 		console.log("Email : " + iArgs.emailAddress);
 		console.log("FirstName : " + iArgs.FirstName);
 		console.log("Region : " + iArgs.region);
 		console.log("Segment : " + iArgs.segment);
+		
+		console.log("DEC Contact key : " + decodedArgs.ContactKey);
+		console.log("DEC Email : " + decodedArgs.emailAddress);
+		console.log("DEC FirstName : " + decodedArgs.FirstName);
+		console.log("DEC Region : " + decodedArgs.region);
+		console.log("DEC Segment : " + decodedArgs.segment);
+		
+		console.log("S Contact key : " + sArgs.ContactKey);
+		console.log("S Email : " + sArgs.emailAddress);
+		console.log("S FirstName : " + sArgs.FirstName);
+		console.log("S Region : " + sArgs.region);
+		console.log("S Segment : " + sArgs.segment);
 		
             logData(req);
             res.send(200, 'Execute');
