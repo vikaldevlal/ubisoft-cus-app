@@ -88,7 +88,7 @@ function(eventDefinitionModel) {
             "ContactKey":"{{Contact.Key}}",
 			"FirstName":"{{Contact.Attribute.WebHookAudienceDE.FirstName}}",
                         "emailAddress": "{{Contact.Attribute.WebHookAudienceDE.Email}}",
-			"region": "{{Contact.Attribute.WebHookAudienceDE".Region}}",
+			"region": "{{Contact.Attribute.WebHookAudienceDE.Region}}",
 			"segment": "{{Contact.Attribute.WebHookAudienceDE.Segment}}",
 			"JourneyDefinitionId": "{{Context.DefinitionId}}",
 			"JourneyDefinitionInstanceId": "{{Context.DefinitionInstanceId}}"
