@@ -86,9 +86,10 @@ function(eventDefinitionModel) {
 
         payload['arguments'].execute.inArguments = [{
             "ContactKey":"{{Contact.Key}}",
-			"FirstName":"{{Contact.Attribute."LatestWebhook"."FirstName"}}",
-            "emailAddress": "{{Contact.Attribute."LatestWebhook"."Email"}}",
-			"region": "{{Contact.Attribute."LatestWebhook"."Region"}}",
+			"FirstName":"{{Contact.Attribute.WebHookAudienceDE.FirstName}}",
+                        "emailAddress": "{{Contact.Attribute.WebHookAudienceDE.Email}}",
+			"region": "{{Contact.Attribute.WebHookAudienceDE".Region}}",
+			"segment": "{{Contact.Attribute.WebHookAudienceDE.Segment}}",
 			"JourneyDefinitionId": "{{Context.DefinitionId}}",
 			"JourneyDefinitionInstanceId": "{{Context.DefinitionInstanceId}}"
         }];
