@@ -85,11 +85,11 @@ function(eventDefinitionModel) {
     function save() {
 
         payload['arguments'].execute.inArguments = [{
-            "ContactKey":"{{Contact.Key}}",
-			"FirstName":"{{Event.eventDefinitionKey.FirstName}}",
-                        "emailAddress": "{{Event.eventDefinitionKey.Email}}",
-			"region": "{{Event.eventDefinitionKey.Region}}",
-			"segment": "{{Event.eventDefinitionKey.Region}}",
+            				"ContactKey":"{{Contact.Key}}",
+					"FirstName":"{{Contact.Attribute.WebHookAudienceDE.FirstName}}",
+                		        "emailAddress": "{{Contact.Attribute.WebHookAudienceDE.Email}}",
+					"region": "{{Contact.Attribute.WebHookAudienceDE.Region}}",
+					"segment": "{{Contact.Attribute.WebHookAudienceDE.Segment}}",
 			"JourneyDefinitionId": "{{Context.DefinitionId}}",
 			"JourneyDefinitionInstanceId": "{{Context.DefinitionInstanceId}}"
         }];
