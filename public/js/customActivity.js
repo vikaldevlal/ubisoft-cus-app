@@ -90,6 +90,7 @@ function(eventDefinitionModel) {
                 		        "emailAddress": "{{Contact.Attribute.WebHookAudienceDE.Email}}",
 					"region": "{{Contact.Attribute.WebHookAudienceDE.Region}}",
 					"segment": "{{Contact.Attribute.WebHookAudienceDE.Segment}}",
+					"EventFirstName":"{{Event.' + eventDefinitionKey + '.FirstName}}",
 			"JourneyDefinitionId": "{{Context.DefinitionId}}",
 			"JourneyDefinitionInstanceId": "{{Context.DefinitionInstanceId}}"
         }];
