@@ -108,6 +108,7 @@ exports.execute = function (req, res) {
 		console.log("DEC FirstName : " + decodedArgs.FirstName);
 		console.log("DEC Region : " + decodedArgs.region);
 		console.log("DEC Segment : " + decodedArgs.segment);
+		console.log("DEC Segment : " + decodedArgs.EventFirstName);
 	
 		
             logData(req);
