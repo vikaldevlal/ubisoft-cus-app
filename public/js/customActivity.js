@@ -7,7 +7,7 @@ define( function( require ) {
     var connection = new Postmonger.Session();
     var authTokens = {};
     var payload = {};
-    var eventDefinitionKey;	
+    var eventDefinitionKey="";	
     $(window).ready(onRender);
 
     connection.on('initActivity', initialize);
@@ -84,13 +84,14 @@ function(eventDefinitionModel) {
 
     function save() {
 
+	    var idField="FirstName";
         payload['arguments'].execute.inArguments = [{
             				"ContactKey":"{{Contact.Key}}",
 					"FirstName":"{{Contact.Attribute.WebHookAudienceDE.FirstName}}",
                 		        "emailAddress": "{{Contact.Attribute.WebHookAudienceDE.Email}}",
 					"region": "{{Contact.Attribute.WebHookAudienceDE.Region}}",
 					"segment": "{{Contact.Attribute.WebHookAudienceDE.Segment}}",
-					"EventFirstName":"{{Event.' + eventDefinitionKey + '.FirstName}}",
+					"EventFirstName":'{{Event.' + eventDefinitionKey + '.\"' + idField + '\"}}'
 			"JourneyDefinitionId": "{{Context.DefinitionId}}",
 			"JourneyDefinitionInstanceId": "{{Context.DefinitionInstanceId}}"
         }];
