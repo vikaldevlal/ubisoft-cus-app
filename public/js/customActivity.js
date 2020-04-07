@@ -91,7 +91,7 @@ function(eventDefinitionModel) {
                 		        "emailAddress": "{{Contact.Attribute.WebHookAudienceDE.Email}}",
 					"region": "{{Contact.Attribute.WebHookAudienceDE.Region}}",
 					"segment": "{{Contact.Attribute.WebHookAudienceDE.Segment}}",
-					"EventFirstName":'{{Event.' + eventDefinitionKey + '.\"' + idField + '\"}}'
+					"EventFirstName":'{{Event.' + eventDefinitionKey + '.\"' + idField + '\"}}',
 			"JourneyDefinitionId": "{{Context.DefinitionId}}",
 			"JourneyDefinitionInstanceId": "{{Context.DefinitionInstanceId}}"
         }];
