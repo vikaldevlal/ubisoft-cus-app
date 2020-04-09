@@ -9,10 +9,6 @@
     <link rel="stylesheet" href="css/styles.css">
 
 <script data-main="js/main.js" type="text/javascript" src="js/require.js"></script>
-    <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
 
@@ -25,7 +21,18 @@
  	$.get( "/connecttoMC", function( data ) {
 	 	console.log(data);
 	});
-	    
+	
+	 $(document).ready(function() {
+  $("#myTable tr:has(td)").mouseover(function(e) {
+    $(this).css("cursor", "pointer");
+  });
+  $("#myTable tr:has(td)").click(function(e) {
+    $("#myTable td").removeClass("highlight");
+    var clickedCell = $(e.target).closest("td");
+    clickedCell.addClass("highlight");
+    $("#couponCode").html(clickedCell.text());
+  });
+});   
 	    
 
  	function getCoupon(){
