@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/styles.css">
 
- <script type="text/javascript" src="js/require.js"></script>
+<script data-main="js/main.js" type="text/javascript" src="js/require.js"></script>
     <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -26,12 +26,6 @@
 	 	console.log(data);
 	});
 	    
-	$('#myTable tbody tr').click(function() {
-		console.log('Inside Row Click');
-    var couponCode = $(this).closest(".trclass").find(".couponcode").text();
-		console.log('Inside Row Click :CouponCode : '+couponCode);
-		$("#couponCode").html(couponCode);
-});    
 	    
 
  	function getCoupon(){
