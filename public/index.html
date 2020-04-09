@@ -26,27 +26,12 @@
   $(document).ready(function() {
 	  console.log('inside ready');
 	  
-	  $('#table').on('click-row.bs.table', function (e, row, $element) {
-     console.log(row, $element);
+	  $('#table').on('click-cell.bs.table', function (field, value, row, $element) {
+     console.log('Clicked Coupon : '+value);
+		  $("#couponCode").html(value);
+		  $("#couponCode").val(value);
 });
-	  $('#table').on('change', 'tr' , function (event) {
-console.log('Inside change');
-            if($('.selected')){
-                kode =$('.selected').closest('tr').find('td:eq(1)').text();
-                $("couponCode").val(kode);
-           }});
 	  
-  $("#table tr:has(td)").mouseover(function(e) {
-	   console.log('inside mouseover');
-    $(this).css("cursor", "pointer");
-  });
-  $("#table tr:has(td)").click(function(e) {
-	  console.log('inside click');
-    $("#table td").removeClass("highlight");
-    var clickedCell = $(e.target).closest("td");
-    clickedCell.addClass("highlight");
-    $("#couponCode").html(clickedCell.text());
-  });
 });
 
  	function getCoupon(){
