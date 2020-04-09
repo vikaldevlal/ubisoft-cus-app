@@ -25,6 +25,13 @@
 
   $(document).ready(function() {
 	  console.log('inside ready');
+	  $('#table').on('change', 'tr' , function (event) {
+console.log('Inside change');
+            if($('.selected')){
+                kode =$('.selected').closest('tr').find('td:eq(1)').text();
+                $("couponCode").val(kode);
+           }});
+	  
   $("#table tr:has(td)").mouseover(function(e) {
 	   console.log('inside mouseover');
     $(this).css("cursor", "pointer");
