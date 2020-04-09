@@ -22,11 +22,11 @@
 	});
 	    
 
-  $("#tblData tr:has(td)").mouseover(function(e) {
+  $("#table tr:has(td)").mouseover(function(e) {
     $(this).css("cursor", "pointer");
   });
-  $("#tblData tr:has(td)").click(function(e) {
-    $("#tblData td").removeClass("highlight");
+  $("#table tr:has(td)").click(function(e) {
+    $("#table td").removeClass("highlight");
     var clickedCell = $(e.target).closest("td");
     clickedCell.addClass("highlight");
     $("#couponCode").html(clickedCell.text());
@@ -60,7 +60,7 @@
     <div class="container">
       <div class="row">
       <div class="col">
-         <table id="tblData">
+         <table id="table">
         <thead>
             <tr>
 		<th data-field="keys.CouponCode">CouponCode</th>
