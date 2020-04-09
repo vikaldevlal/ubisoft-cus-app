@@ -26,8 +26,10 @@
   $(document).ready(function() {
 	  console.log('inside ready');
 	  
-	  $('#table').on('click-cell.bs.table', function (field, value, row, $element) {
-     console.log('Clicked Coupon : '+value);
+	  $('#table').on('click-cell.bs.table', function (event,field, value, row, $element) {
+     console.log('Clicked Coupon : '+$element.text());
+		  console.log('Clicked field : '+field);
+		    console.log('Clicked value : '+value);
 		  $("#couponCode").html(value);
 		  $("#couponCode").val(value);
 });
