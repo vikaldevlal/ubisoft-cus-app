@@ -20,12 +20,25 @@
  	$.get( "/connecttoMC", function( data ) {
 	 	console.log(data);
 	});
+	    
+	$(document).ready(function() {
+  $("#tblData tr:has(td)").mouseover(function(e) {
+    $(this).css("cursor", "pointer");
+  });
+  $("#tblData tr:has(td)").click(function(e) {
+    $("#tblData td").removeClass("highlight");
+    var clickedCell = $(e.target).closest("td");
+    clickedCell.addClass("highlight");
+    $("#spnText").html(
+      'Clicked table cell value is: <b> ' + clickedCell.text() + '</b>');
+  });
+});    
 
  	function getCoupon(){
  		$.get( "/getCouponCode", function( data ) {
 	 	console.log(data);
 		$(function () {
-		    $('#table').bootstrapTable({
+		    $('#tblData').bootstrapTable({
 		        data: data
 		    });
 		});	
@@ -48,7 +61,7 @@
     <div class="container">
       <div class="row">
       <div class="col">
-         <table id="table">
+         <table id="tblData">
         <thead>
             <tr>
 		<th data-field="keys.CouponCode">CouponCode</th>
@@ -61,9 +74,10 @@
       <div class="col-4">
         <button class="btn-success" onclick="getCoupon();">Get Coupon</button>
       </div>
-      <div class="col-4">
-       <button class="btn-primary " onclick="postCouponData();">Save Coupon Data</button>
-      </div>
+      <div class="form-group">
+  <label for="couponCode"> Selected Coupon</label>
+  <input type="text" class="form-control" id="couponCode">
+</div>
     </div>
     </div>
    </body>
