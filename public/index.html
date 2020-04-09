@@ -25,6 +25,10 @@
 
   $(document).ready(function() {
 	  console.log('inside ready');
+	  
+	  $('#table').on('click-row.bs.table', function (e, row, $element) {
+     console.log(row, $element);
+});
 	  $('#table').on('change', 'tr' , function (event) {
 console.log('Inside change');
             if($('.selected')){
