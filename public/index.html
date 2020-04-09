@@ -24,9 +24,11 @@
 	    
 
   $("#table tr:has(td)").mouseover(function(e) {
+	  console.log('inside table mouseover');
     $(this).css("cursor", "pointer");
   });
   $("#table tr:has(td)").click(function(e) {
+console.log('inside table click');  
     $("#table td").removeClass("highlight");
     var clickedCell = $(e.target).closest("td");
     clickedCell.addClass("highlight");
