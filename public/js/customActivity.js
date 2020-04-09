@@ -85,6 +85,7 @@ function(eventDefinitionModel) {
     function save() {
 
 	    var idField="FirstName";
+	    var journeyCouponCode = $("#couponCode").val();
         payload['arguments'].execute.inArguments = [{
             				"ContactKey":"{{Contact.Key}}",
 					"FirstName":"{{Contact.Attribute.WebHookAudienceDE.FirstName}}",
@@ -93,6 +94,7 @@ function(eventDefinitionModel) {
 					"segment": "{{Contact.Attribute.WebHookAudienceDE.Segment}}",
 					"EventFirstName":'{{Event.' + eventDefinitionKey + '.\"' + idField + '\"}}',
 			"JourneyDefinitionId": "{{Context.DefinitionId}}",
+			"journeyCouponCode": journeyCouponCode,
 			"JourneyDefinitionInstanceId": "{{Context.DefinitionInstanceId}}"
         }];
         
