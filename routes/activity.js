@@ -109,6 +109,9 @@ exports.execute = function (req, res) {
 		console.log("DEC Region : " + decodedArgs.region);
 		console.log("DEC Segment : " + decodedArgs.segment);
 		console.log("DEC Event FirstName : " + decodedArgs.EventFirstName);
+		console.log("DEC Event journeyCouponCode : " + decodedArgs.journeyCouponCode);
+		var journeyCouponCode=decodedArgs.journeyCouponCode;
+	
 	
 		
             logData(req);
