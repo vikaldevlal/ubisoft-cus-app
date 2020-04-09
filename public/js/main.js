@@ -5,16 +5,14 @@ requirejs.config({
 		postmonger: 'postmonger'
 	},
 	shim: {
-		'jquery.min': {
-			exports: '$'
-		},
+		
 		'customActivity': {
-			deps: ['jquery.min', 'postmonger']
+			deps: ['postmonger']
 		}
 	}
 });
 
-requirejs(['jquery.min', 'customActivity'], function ($, customEvent) {
+requirejs(['customActivity'], function ($, customEvent) {
 });
 
 requirejs.onError = function (err) {
