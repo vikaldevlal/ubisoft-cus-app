@@ -29,8 +29,7 @@
     $("#tblData td").removeClass("highlight");
     var clickedCell = $(e.target).closest("td");
     clickedCell.addClass("highlight");
-    $("#spnText").html(
-      'Clicked table cell value is: <b> ' + clickedCell.text() + '</b>');
+    $("#couponCode").html(clickedCell.text());
   });
 });    
 
