@@ -180,7 +180,8 @@ exports.execute = function (req, res) {
 		saveContactCoupon(journeyCouponCode,contactFirstName);
 	
 	 
-}};
+});
+};
 
 
 /*
