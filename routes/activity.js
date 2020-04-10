@@ -179,8 +179,13 @@ exports.execute = function (req, res) {
 		getConnection();
 		saveContactCoupon(journeyCouponCode,contactFirstName);
 	
-	 
-});
+	       logData(req);
+            res.send(200, 'Execute');
+        } else {
+            console.error('inArguments invalid.');
+            return res.status(400).end();
+        }
+    });
 };
 
 
