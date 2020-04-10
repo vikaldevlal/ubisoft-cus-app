@@ -101,7 +101,7 @@ function saveContactCoupon(journeyCouponCode,contactFirstName)
   		}
   		couponData2.push(couponItem);
 	
-axios({
+    axios({
 	    method: 'post',
 	    url: process.env.RESTENDPOINT+'/hub/v1/dataevents/key:cjacouponpost/rowset',
 	    data: couponData2,
@@ -118,14 +118,8 @@ axios({
 		 .catch(function (error) {
 			console.log(error);
 		});
-		
-            logData(req);
-            res.send(200, 'Execute');
-        } else {
-            console.error('inArguments invalid.');
-            return res.status(400).end();
-        }
-    });
+
+
 
 }
 
@@ -186,7 +180,7 @@ exports.execute = function (req, res) {
 		saveContactCoupon(journeyCouponCode,contactFirstName);
 	
 	 
-};
+}};
 
 
 /*
