@@ -17,6 +17,7 @@ const axios = require('axios');
 const CircularJSON = require('circular-json');
 var token='';
 var couponData = [];
+var couponData2=[];
 var datafromCall =[];
 
 exports.logExecuteData = [];
@@ -60,6 +61,75 @@ function logData(req) {
     console.log("originalUrl: " + req.originalUrl);
 }
 
+/*Get Connection */
+
+function getConnection()
+{
+var conData = {
+    'clientId': process.env.CLIENT_ID,
+    'clientSecret': process.env.CLIENT_SECRET  
+  	}
+	axios({
+	  method:'post',
+	  url:process.env.AUTHENDPOINT,
+	  data: conData,
+	  headers:{
+       'Content-Type': 'application/json',
+	  }
+	})
+	  .then(function(response) {
+		responsefromWeb.send('Authorization Sent');
+	  		token = response.data.accessToken;
+}).catch(function (error) {
+	    console.log(error);
+	    responsefromWeb.send(error);
+	  });
+}
+
+/* Save Coupon Data**/
+
+function saveContactCoupon(journeyCouponCode,contactFirstName)
+{
+	var couponItem = {
+  			"keys":{
+  				"CouponCode" : journeyCouponCode
+  			},
+  			"values":{
+					
+					"FirstName": contactFirstName
+  			}
+  		}
+  		couponData2.push(couponItem);
+	
+axios({
+	    method: 'post',
+	    url: process.env.RESTENDPOINT+'/hub/v1/dataevents/key:cjacouponpost/rowset',
+	    data: couponData2,
+	    headers:{
+	       'Authorization': 'Bearer ' + token,
+	       'Content-Type': 'application/json',
+	    }
+	  })
+	    .then(function(response) {
+				var json = CircularJSON.stringify(response);
+	      console.log(json);
+	      responsefromWeb.send(json);
+		}) 
+		 .catch(function (error) {
+			console.log(error);
+		});
+		
+            logData(req);
+            res.send(200, 'Execute');
+        } else {
+            console.error('inArguments invalid.');
+            return res.status(400).end();
+        }
+    });
+
+}
+
+
 /*
  * POST Handler for / route of Activity (this is the edit route).
  */
@@ -86,7 +156,7 @@ exports.save = function (req, res) {
  * POST Handler for /execute/ route of Activity.
  */
 exports.execute = function (req, res) {
-	
+	couponData2=[];
 	
          // example on how to decode JWT
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
@@ -111,17 +181,11 @@ exports.execute = function (req, res) {
 		console.log("DEC Event FirstName : " + decodedArgs.EventFirstName);
 		console.log("DEC Event journeyCouponCode : " + decodedArgs.journeyCouponCode);
 		var journeyCouponCode=decodedArgs.journeyCouponCode;
+		var contactFirstName=decodedArgs.EventFirstName;
+		getConnection();
+		saveContactCoupon(journeyCouponCode,contactFirstName);
 	
-	
-		
-            logData(req);
-            res.send(200, 'Execute');
-        } else {
-            console.error('inArguments invalid.');
-            return res.status(400).end();
-        }
-    });
-   
+	 
 };
 
 
