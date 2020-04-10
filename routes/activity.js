@@ -78,11 +78,11 @@ var conData = {
 	  }
 	})
 	  .then(function(response) {
-		responsefromWeb.send('Authorization Sent');
+		//responsefromWeb.send('Authorization Sent');
 	  		token = response.data.accessToken;
 }).catch(function (error) {
 	    console.log(error);
-	    responsefromWeb.send(error);
+	    //responsefromWeb.send(error);
 	  });
 }
 
