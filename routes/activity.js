@@ -113,7 +113,7 @@ function saveContactCoupon(journeyCouponCode,contactFirstName,responsefromWeb)
 	    .then(function(response) {
 				var json = CircularJSON.stringify(response);
 	      console.log(json);
-	      responsefromWeb.send(json);
+	      //responsefromWeb.send(json);
 		}) 
 		 .catch(function (error) {
 			console.log(error);
