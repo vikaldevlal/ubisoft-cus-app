@@ -89,18 +89,19 @@ function(eventDefinitionModel) {
 	    var firstName="FirstName";
 	    var lastName="LastName";
 	    var customObjectKey="_CustomObjectKey";
-	    var journeyCouponCode = $("#couponCode").val();
+	    var email="EmailAddress";
+	    
+	    var journeySegmentName = $("#segmentName").val();
+	    var journeySegmentID = $("#segmentID").val();
         payload['arguments'].execute.inArguments = [{
             				"ContactKey":"{{Contact.Key}}",
-					"FirstName":"{{Contact.Attribute.WebHookAudienceDE.FirstName}}",
-                		        "emailAddress": "{{Contact.Attribute.WebHookAudienceDE.Email}}",
-					"region": "{{Contact.Attribute.WebHookAudienceDE.Region}}",
-					"segment": "{{Contact.Attribute.WebHookAudienceDE.Segment}}",
 					"EventFirstName":'{{Event.' + eventDefinitionKey + '.\"' + firstName + '\"}}',
 		                        "EventLastName":'{{Event.' + eventDefinitionKey + '.\"' + lastName + '\"}}',
 		                        "CustomObjectKey":'{{Event.' + eventDefinitionKey + '.\"' + customObjectKey + '\"}}',
+		                        "Email":'{{Event.' + eventDefinitionKey + '.\"' + email + '\"}}',
 			                "JourneyDefinitionId": "{{Context.DefinitionId}}",
-			                "journeyCouponCode": journeyCouponCode,
+			                "journeySegmentName": journeySegmentName,
+		                        "journeySegmentID":journeySegmentID,
 		                        "eventDefinitionKey": eventDefinitionKey,
 		                        "journeyName": journeyName,
 			                "JourneyDefinitionInstanceId": "{{Context.DefinitionInstanceId}}",
