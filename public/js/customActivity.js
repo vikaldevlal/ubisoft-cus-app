@@ -84,7 +84,9 @@ function(eventDefinitionModel) {
 
     function save() {
 
-	    var idField="FirstName";
+	    var firstName="FirstName";
+	    var lastName="lastName";
+	    var customObjectKey="_CustomObjectKey";
 	    var journeyCouponCode = $("#couponCode").val();
         payload['arguments'].execute.inArguments = [{
             				"ContactKey":"{{Contact.Key}}",
@@ -92,10 +94,16 @@ function(eventDefinitionModel) {
                 		        "emailAddress": "{{Contact.Attribute.WebHookAudienceDE.Email}}",
 					"region": "{{Contact.Attribute.WebHookAudienceDE.Region}}",
 					"segment": "{{Contact.Attribute.WebHookAudienceDE.Segment}}",
-					"EventFirstName":'{{Event.' + eventDefinitionKey + '.\"' + idField + '\"}}',
-			"JourneyDefinitionId": "{{Context.DefinitionId}}",
-			"journeyCouponCode": journeyCouponCode,
-			"JourneyDefinitionInstanceId": "{{Context.DefinitionInstanceId}}"
+					"EventFirstName":'{{Event.' + eventDefinitionKey + '.\"' + firstName + '\"}}',
+		                        "EventLastName":'{{Event.' + eventDefinitionKey + '.\"' + lastName + '\"}}',
+		                        "CustomObjectKey":'{{Event.' + eventDefinitionKey + '.\"' + customObjectKey + '\"}}',
+			                "JourneyDefinitionId": "{{Context.DefinitionId}}",
+			                "journeyCouponCode": journeyCouponCode,
+		                        "eventDefinitionKey": eventDefinitionKey,
+			                "JourneyDefinitionInstanceId": "{{Context.DefinitionInstanceId}}",
+		                        "JourneyDefinitionId": "{{Context.DefinitionId}}",
+		                        "JourneyPublicationId": "{{Context.PublicationId}}",
+		                        "JourneyVersionNumber": "{{Context.VersionNumber}}"
         }];
         
         payload['metaData'].isConfigured = true;
