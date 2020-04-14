@@ -270,6 +270,8 @@ exports.connecttoMC = function (req, responsefromWeb) {
  * POST Handler for /getCouponCode/ route of Activity.
  */
 exports.getSegmentName = function (req, responsefromWeb) {
+getConnection();
+
 segmentData=[];
   axios({
 	    method: 'get',
