@@ -95,7 +95,7 @@ function saveContactCoupon(journeyCouponCode,contactFirstName,contactLastName,Co
   var n = d.getTime();
  var conUniqueKey=ContactKey+n;
 	
-	var couponItem = {"key":{"conUniqueKey":conUniqueKey},
+	var couponItem = {"keys":{"conUniqueKey":conUniqueKey},
   			"values":{
 					
 					"FirstName": contactFirstName,
