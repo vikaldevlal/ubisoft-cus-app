@@ -288,16 +288,15 @@ segmentData=[];
 	  
   	datafromCall = response.data.items;
 	  
-	  console.log(' Segment data : '+JSON.Stringify(datafromCall));
+	  console.log(' Segment data : '+JSON.stringify(datafromCall));
 	  
   	for(var x=0;x<datafromCall.length;x++){
   		var couponItem = {
   			"keys":{
   				"SegmentID" : datafromCall[x].keys.segment_id
   			},
-  			"values":{
-					
-					"Segment_Name": datafromCall[x].values.segment_name
+  			"values":{	
+				"Segment_Name": datafromCall[x].values.segment_name
   			}
   		}
   		segmentData.push(couponItem);
