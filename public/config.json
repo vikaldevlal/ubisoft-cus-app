@@ -8,7 +8,7 @@
     "type": "REST",
     "lang": {
         "en-US": {
-            "name": "LatestWebHook",
+            "name": "ubisoft-webhook",
           "description": "A Template for a custom Journey Builder activity",
           "step1Label": "Configure Activity"
         }
@@ -18,7 +18,7 @@
            "inArguments":[								
 			],
           "outArguments": [],
-          "url": "https://latestwebhook.herokuapp.com/journeybuilder/execute",
+          "url": "https://ubisoft-cus-app.herokuapp.com/journeybuilder/execute",
            "verb": "POST",
             "body": "",
             "header": "",
@@ -28,24 +28,24 @@
         }
     },
     "configurationArguments": {
-      "applicationExtensionKey": "39ade4f2-ebe9-4331-8b01-6fb86146c87d",
+      "applicationExtensionKey": "034d8eb1-cec2-4400-97d9-7613d5da19b2",
       "save": {
-        "url": "https://latestwebhook.herokuapp.com/journeybuilder/save",
+        "url": "https://ubisoft-cus-app.herokuapp.com/journeybuilder/save",
           "verb": "POST",
         "useJwt": true
        },
        "publish": {
-        "url": "https://latestwebhook.herokuapp.com/journeybuilder/publish",
+        "url": "https://ubisoft-cus-app.herokuapp.com/journeybuilder/publish",
            "verb": "POST",
         "useJwt": true
        },
       "stop": {
-        "url": "https://latestwebhook.herokuapp.com/journeybuilder/stop",
+        "url": "https://ubisoft-cus-app.herokuapp.com/journeybuilder/stop",
            "verb": "POST",
         "useJwt": true
       },
       "validate": {
-        "url": "https://latestwebhook.herokuapp.com/journeybuilder/validate",
+        "url": "https://ubisoft-cus-app.herokuapp.com/journeybuilder/validate",
         "verb": "POST",
         "useJwt": true
       }
