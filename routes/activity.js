@@ -298,7 +298,7 @@ segmentData=[];
 					"Segment_Name": datafromCall[x].values.Segment_Name
   			}
   		}
-  		couponData.push(couponItem);
+  		segmentData.push(couponItem);
   	}
 
     responsefromWeb.send(couponData);
