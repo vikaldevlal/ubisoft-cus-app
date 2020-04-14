@@ -20,7 +20,6 @@ define( function( require ) {
     function onRender() {
         // JB will respond the first time 'ready' is called with 'initActivity'
         connection.trigger('ready');
-	console.log('Inside Render');
 
         connection.trigger('requestTokens');
         connection.trigger('requestEndpoints');
@@ -28,7 +27,6 @@ define( function( require ) {
     }
 
     function initialize(data) {
-        console.log('Inside initialize : data : '+data);
         if (data) {
             payload = data;
         }
@@ -42,7 +40,6 @@ define( function( require ) {
 
         var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
 
-       console.log('Inside initialize : inArguments : '+inArguments);
 
         $.each(inArguments, function (index, inArgument) {
             $.each(inArgument, function (key, val) {
@@ -59,13 +56,11 @@ define( function( require ) {
     }
 
     function onGetTokens(tokens) {
-        console.log('Inside onGetTokens : '+tokens);
         authTokens = tokens;
     }
 
     function onGetEndpoints(endpoints) {
         
-        console.log('Inside onGetEndpoints : '+endpoints);
     }
 	
 
@@ -77,7 +72,6 @@ function(eventDefinitionModel) {
 
         eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
 	   journeyName= eventDefinitionModel.name; 
-        console.log("Event Definition Key : " + eventDefinitionKey);
         /*If you want to see all*/
         console.log('eventDefinitionModel : '+JSON.stringify(eventDefinitionModel));
     }
@@ -112,7 +106,6 @@ function(eventDefinitionModel) {
         
         payload['metaData'].isConfigured = true;
 
-        console.log('payload : '+payload);
 	 console.log('payload 2 : '+JSON.stringify(payload));
         connection.trigger('updateActivity', payload);
     }
