@@ -88,15 +88,25 @@ var conData = {
 
 /* Save Coupon Data**/
 
-function saveContactCoupon(journeyCouponCode,contactFirstName,responsefromWeb)
+function saveContactCoupon(journeyCouponCode,contactFirstName,contactLastName,ContactKey,JourneyDefinitionId,journeyName,
+				 eventDefinitionKey,CustomObjectKey,JourneyDefinitionInstanceId,JourneyPublicationId,
+			    JourneyVersionNumber, res)
 {
 	var couponItem = {
-  			"keys":{
-  				"CouponCode" : journeyCouponCode
-  			},
   			"values":{
 					
-					"FirstName": contactFirstName
+					"FirstName": contactFirstName,
+				        "CouponCode": journeyCouponCode,
+				        "LastName": contactLastName,
+				        "ContactKey": ContactKey,
+				        "CustomObjectKey": CustomObjectKey,
+				        "JourneyDefinitionId": JourneyDefinitionId,
+				        "eventDefinitionKey": eventDefinitionKey,
+				        "JourneyDefinitionInstanceId": JourneyDefinitionInstanceId,
+				        "JourneyPublicationId": JourneyPublicationId,
+				        "JourneyVersionNumber": JourneyVersionNumber,
+				        "JourneyName": journeyName
+				
   			}
   		}
   		couponData2.push(couponItem);
@@ -112,7 +122,7 @@ function saveContactCoupon(journeyCouponCode,contactFirstName,responsefromWeb)
 	  })
 	    .then(function(response) {
 				var json = CircularJSON.stringify(response);
-	      console.log(json);
+	      console.log("Data Saved");
 	      //responsefromWeb.send(json);
 		}) 
 		 .catch(function (error) {
@@ -176,8 +186,18 @@ exports.execute = function (req, res) {
 		console.log("DEC Event journeyCouponCode : " + decodedArgs.journeyCouponCode);
 		var journeyCouponCode=decodedArgs.journeyCouponCode;
 		var contactFirstName=decodedArgs.EventFirstName;
+		var contactLastName=decodedArgs.EventLastName;
+		var ContactKey=decodedArgs.ContactKey;
+		var JourneyDefinitionId=decodedArgs.JourneyDefinitionId;
+		var journeyName=decodedArgs.journeyName;
+		var eventDefinitionKey=decodedArgs.eventDefinitionKey;
+		var CustomObjectKey=decodedArgs.CustomObjectKey;
+		var JourneyDefinitionInstanceId=decodedArgs.JourneyDefinitionInstanceId;
+		var JourneyPublicationId=decodedArgs.JourneyPublicationId;
+		var JourneyVersionNumber=decodedArgs.JourneyVersionNumber;
 		getConnection();
-		saveContactCoupon(journeyCouponCode,contactFirstName,res);
+		saveContactCoupon(journeyCouponCode,contactFirstName,contactLastName,ContactKey,JourneyDefinitionId,journeyName,
+				 eventDefinitionKey,CustomObjectKey,JourneyDefinitionInstanceId,JourneyPublicationId,JourneyVersionNumber, res);
 	
 	       logData(req);
             res.send(200, 'Execute');
