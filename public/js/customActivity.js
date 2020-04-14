@@ -7,7 +7,8 @@ define( function( require ) {
     var connection = new Postmonger.Session();
     var authTokens = {};
     var payload = {};
-    var eventDefinitionKey="";	
+    var eventDefinitionKey="";
+    var	journeyName="";
     $(window).ready(onRender);
 
     connection.on('initActivity', initialize);
@@ -75,6 +76,7 @@ function(eventDefinitionModel) {
     if(eventDefinitionModel){
 
         eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
+	   journeyName= eventDefinitionModel.name; 
         console.log("Event Definition Key : " + eventDefinitionKey);
         /*If you want to see all*/
         console.log('eventDefinitionModel : '+JSON.stringify(eventDefinitionModel));
@@ -100,6 +102,7 @@ function(eventDefinitionModel) {
 			                "JourneyDefinitionId": "{{Context.DefinitionId}}",
 			                "journeyCouponCode": journeyCouponCode,
 		                        "eventDefinitionKey": eventDefinitionKey,
+		                        "journeyName": journeyName,
 			                "JourneyDefinitionInstanceId": "{{Context.DefinitionInstanceId}}",
 		                        "JourneyDefinitionId": "{{Context.DefinitionId}}",
 		                        "JourneyPublicationId": "{{Context.PublicationId}}",
