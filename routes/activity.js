@@ -16,7 +16,7 @@ var req     = require('request');
 const axios = require('axios');
 const CircularJSON = require('circular-json');
 var token='';
-var couponData = [];
+var segmentData = [];
 var couponData2=[];
 var datafromCall =[];
 
@@ -269,12 +269,12 @@ exports.connecttoMC = function (req, responsefromWeb) {
 /*
  * POST Handler for /getCouponCode/ route of Activity.
  */
-exports.getCouponCode = function (req, responsefromWeb) {
-  couponData=[];
+exports.getSegmentName = function (req, responsefromWeb) {
+segmentData=[];
   axios({
 	    method: 'get',
-	    url: process.env.RESTENDPOINT+'/data/v1/customobjectdata/key/getcouponcode/rowset',
-	    data: couponData,
+	    url: process.env.RESTENDPOINT+'/data/v1/customobjectdata/key/OFFER_MGMT_SEGMENTS_POC/rowset',
+	    data: segmentData,
 	    headers:{
 	       'Authorization': 'Bearer ' + token,
 	       'Content-Type': 'application/json',
@@ -287,11 +287,11 @@ exports.getCouponCode = function (req, responsefromWeb) {
   	for(var x=0;x<datafromCall.length;x++){
   		var couponItem = {
   			"keys":{
-  				"CouponCode" : datafromCall[x].keys.couponcode
+  				"SegmentID" : datafromCall[x].keys.Segment_ID
   			},
   			"values":{
 					
-					"FirstName": 'John'+x
+					"Segment_Name": datafromCall[x].values.Segment_Name
   			}
   		}
   		couponData.push(couponItem);
@@ -303,27 +303,4 @@ exports.getCouponCode = function (req, responsefromWeb) {
     console.log(error);
     responsefromWeb.send(error);
   });
-};
-
-/*
- * POST Handler for /postCouponData/ route of Activity.
- */
-exports.postCouponData = function (req, responsefromWeb) {
-    axios({
-	    method: 'post',
-	    url: process.env.RESTENDPOINT+'/hub/v1/dataevents/key:cjacouponpost/rowset',
-	    data: couponData,
-	    headers:{
-	       'Authorization': 'Bearer ' + token,
-	       'Content-Type': 'application/json',
-	    }
-	  })
-	    .then(function(response) {
-				var json = CircularJSON.stringify(response);
-	      console.log(json);
-	      responsefromWeb.send(json);
-		}) 
-		 .catch(function (error) {
-			console.log(error);
-		});
 };
