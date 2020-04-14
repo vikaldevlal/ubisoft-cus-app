@@ -257,7 +257,7 @@ exports.connecttoMC = function (req, responsefromWeb) {
 	  .then(function(response) {
 		responsefromWeb.send('Authorization Sent');
 	  		//responsefromWeb.status(200).send('connecttoMC');
-	  		token = response.data.accessToken;
+	  		token = response.data.access_token;
 		console.log('token : '+token);
 	  	
 	}).catch(function (error) {
