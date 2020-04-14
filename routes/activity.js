@@ -66,8 +66,9 @@ function logData(req) {
 function getConnection()
 {
 var conData = {
-    'clientId': process.env.CLIENT_ID,
-    'clientSecret': process.env.CLIENT_SECRET  
+    'client_id': process.env.CLIENT_ID,
+    'client_secret': process.env.CLIENT_SECRET,
+    'grant_type': process.env.grant_type
   	}
 	axios({
 	  method:'post',
@@ -79,7 +80,7 @@ var conData = {
 	})
 	  .then(function(response) {
 		//responsefromWeb.send('Authorization Sent');
-	  		token = response.data.accessToken;
+	  		token = response.data.access_token;
 }).catch(function (error) {
 	    console.log(error);
 	    //responsefromWeb.send(error);
@@ -242,8 +243,8 @@ exports.connecttoMC = function (req, responsefromWeb) {
     // Data from the req and put it in an array accessible to the main app.	
     
     var conData = {
-    'client_Id': process.env.CLIENT_ID,
-    'client_Secret': process.env.CLIENT_SECRET,
+    'client_id': process.env.CLIENT_ID,
+    'client_secret': process.env.CLIENT_SECRET,
     'grant_type': process.env.grant_type	    
   	}
 	axios({
