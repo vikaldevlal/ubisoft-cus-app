@@ -85,7 +85,7 @@ function(eventDefinitionModel) {
     function save() {
 
 	    var firstName="FirstName";
-	    var lastName="lastName";
+	    var lastName="LastName";
 	    var customObjectKey="_CustomObjectKey";
 	    var journeyCouponCode = $("#couponCode").val();
         payload['arguments'].execute.inArguments = [{
