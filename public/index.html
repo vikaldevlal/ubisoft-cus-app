@@ -27,8 +27,8 @@
 	  console.log('inside ready');
 	  
 	  $('#table').on('click-cell.bs.table', function (event,field, value, row, $element) {
-		  $("#couponCode").html(value);
-		  $("#couponCode").val(value);
+		  $("#segmentName").html(value);
+		  $("#segmentName").val(value);
 });
 	  
 });
@@ -46,11 +46,6 @@
 	});
  	}
 
- 	function postCouponData(){
- 		$.get( "/postCouponData", function( data ) {
-	 	console.log($.parseJSON(data));
-	});
- 	}
 
  </script>
     
