@@ -92,7 +92,7 @@ function(eventDefinitionModel) {
 	    var email="EmailAddress";
 	    
 	    var journeySegmentName = $("#segmentName").val();
-	    var journeySegmentID = $("#segmentID").val();
+	    var journeySegmentID = $("#segmentName").val();
         payload['arguments'].execute.inArguments = [{
             				"ContactKey":"{{Contact.Key}}",
 					"EventFirstName":'{{Event.' + eventDefinitionKey + '.\"' + firstName + '\"}}',
