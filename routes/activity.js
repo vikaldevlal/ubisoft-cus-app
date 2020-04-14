@@ -89,7 +89,7 @@ var conData = {
 
 /* Save Coupon Data**/
 
-function saveContactCoupon(journeyCouponCode,contactFirstName,contactLastName,ContactKey,JourneyDefinitionId,journeyName,
+function saveContactCoupon(journeySegmentName,journeySegmentID,Email,contactFirstName,contactLastName,ContactKey,JourneyDefinitionId,journeyName,
 				 eventDefinitionKey,CustomObjectKey,JourneyDefinitionInstanceId,JourneyPublicationId,
 			    JourneyVersionNumber, res)
 {  var d = new Date();
@@ -100,7 +100,9 @@ function saveContactCoupon(journeyCouponCode,contactFirstName,contactLastName,Co
   			"values":{
 					
 					"FirstName": contactFirstName,
-				        "CouponCode": journeyCouponCode,
+				        "SegmentName": journeySegmentName,
+				        "SegmentID": journeySegmentID,
+					"EmailAddress":Email,
 				        "LastName": contactLastName,
 				        "ContactKey": ContactKey,
 				        "CustomObjectKey": CustomObjectKey,
@@ -117,7 +119,7 @@ function saveContactCoupon(journeyCouponCode,contactFirstName,contactLastName,Co
 	
     axios({
 	    method: 'post',
-	    url: process.env.RESTENDPOINT+'/hub/v1/dataevents/key:cjacouponpost/rowset',
+	    url: process.env.RESTENDPOINT+'/hub/v1/dataevents/key:CONTACT_SEGMENT_POST_POC/rowset',
 	    data: couponData2,
 	    headers:{
 	       'Authorization': 'Bearer ' + token,
@@ -188,7 +190,9 @@ exports.execute = function (req, res) {
 		console.log("DEC Segment : " + decodedArgs.segment);
 		console.log("DEC Event FirstName : " + decodedArgs.EventFirstName);
 		console.log("DEC Event journeyCouponCode : " + decodedArgs.journeyCouponCode);
-		var journeyCouponCode=decodedArgs.journeyCouponCode;
+		var journeySegmentName=decodedArgs.journeySegmentName;
+		var journeySegmentID=decodedArgs.journeySegmentID;
+		var Email=decodedArgs.Email;
 		var contactFirstName=decodedArgs.EventFirstName;
 		var contactLastName=decodedArgs.EventLastName;
 		var ContactKey=decodedArgs.ContactKey;
@@ -200,7 +204,7 @@ exports.execute = function (req, res) {
 		var JourneyPublicationId=decodedArgs.JourneyPublicationId;
 		var JourneyVersionNumber=decodedArgs.JourneyVersionNumber;
 		getConnection();
-		saveContactCoupon(journeyCouponCode,contactFirstName,contactLastName,ContactKey,JourneyDefinitionId,journeyName,
+		saveContactCoupon(journeySegmentName,journeySegmentID,Email,contactFirstName,contactLastName,ContactKey,JourneyDefinitionId,journeyName,
 				 eventDefinitionKey,CustomObjectKey,JourneyDefinitionInstanceId,JourneyPublicationId,JourneyVersionNumber, res);
 	
 	       logData(req);
