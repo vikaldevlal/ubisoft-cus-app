@@ -301,7 +301,7 @@ segmentData=[];
   		segmentData.push(couponItem);
   	}
 
-    responsefromWeb.send(couponData);
+    responsefromWeb.send(segmentData);
   })
   .catch(function (error) {
     console.log(error);
