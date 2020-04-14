@@ -91,8 +91,11 @@ var conData = {
 function saveContactCoupon(journeyCouponCode,contactFirstName,contactLastName,ContactKey,JourneyDefinitionId,journeyName,
 				 eventDefinitionKey,CustomObjectKey,JourneyDefinitionInstanceId,JourneyPublicationId,
 			    JourneyVersionNumber, res)
-{
-	var couponItem = {
+{  var d = new Date();
+  var n = d.getTime();
+ var conUniqueKey=ContactKey+n;
+	
+	var couponItem = {"key":{"conUniqueKey":conUniqueKey},
   			"values":{
 					
 					"FirstName": contactFirstName,
