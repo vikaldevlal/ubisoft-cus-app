@@ -17,7 +17,8 @@
         "execute": {
            "inArguments":[								
 			],
-          "outArguments": [],
+          "outArguments": [{"SegmentName":"{{Interaction.REST-1.SegmentName}}",
+			    {"activityInstanceID":"{{Interaction.REST-1.activityInstanceId}}"],
           "url": "https://ubisoft-cus-app.herokuapp.com/journeybuilder/execute",
            "verb": "POST",
             "body": "",
