@@ -78,6 +78,18 @@ function(eventDefinitionModel) {
 
 });	
 
+	connection.trigger('requestInteraction');
+	
+	connection.on('requestedInteraction',
+function(Interaction) {
+    if(Interaction){
+        /*If you want to see all*/
+        //console.log('Interaction : '+JSON.stringify(Interaction));
+    }
+
+});
+	
+	
     function save() {
 
 	    var firstName="FirstName";
@@ -98,6 +110,8 @@ function(eventDefinitionModel) {
 		                        "journeySegmentID":journeySegmentID,
 		                        "eventDefinitionKey": eventDefinitionKey,
 		                        "journeyName": journeyName,
+					"ActivityId":"{{Activity.Id}}",
+					"activityInstanceId":"{{Interaction.REST-1.activityInstanceId}}",
 			                "JourneyDefinitionInstanceId": "{{Context.DefinitionInstanceId}}",
 		                        "JourneyDefinitionId": "{{Context.DefinitionId}}",
 		                        "JourneyPublicationId": "{{Context.PublicationId}}",
