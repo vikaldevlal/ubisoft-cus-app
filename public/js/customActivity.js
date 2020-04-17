@@ -111,7 +111,7 @@ function(Interaction) {
 		                        "eventDefinitionKey": eventDefinitionKey,
 		                        "journeyName": journeyName,
 					"ActivityId":"{{Activity.Id}}",
-					"activityInstanceId":"{{Interaction.REST-1.activityInstanceId}}",
+					"SegmentName":"{{Interaction.REST-1.SegmentName}}",
 			                "JourneyDefinitionInstanceId": "{{Context.DefinitionInstanceId}}",
 		                        "JourneyDefinitionId": "{{Context.DefinitionId}}",
 		                        "JourneyPublicationId": "{{Context.PublicationId}}",
